@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.b2b.is/CreditCards/2013/09/01/CreditCardTypes" elementFormDefault="qualified" targetNamespace="http://schemas.b2b.is/CreditCards/2013/09/01/CreditCardTypes" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:complexType name="ArrayOfCreditCard">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="CreditCard" nillable="true" type="tns:CreditCard" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfCreditCard" nillable="true" type="tns:ArrayOfCreditCard" />
+  <xs:complexType name="CreditCard">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="CardHolderName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CardOwnerName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CardId" type="xs:long" />
+      <xs:element minOccurs="0" name="CardOwnerId" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CardHolderId" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="AmountDue" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="Balance" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="Active" type="xs:boolean" />
+      <xs:element minOccurs="0" name="LastYearTurnover" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="CardType" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CardBrand" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CardRole" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="BankNumber" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="IssueDate" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="ExpiryDate" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="Limit" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="CardNumber" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CurrentYearTurnover" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="DomesticUsage" nillable="true" type="tns:Amount" />
+      <xs:element minOccurs="0" name="ForeignUsage" nillable="true" type="tns:Amount" />
+      <xs:element minOccurs="0" name="AvailableBalance" nillable="true" type="xs:decimal" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="CreditCard" nillable="true" type="tns:CreditCard" />
+  <xs:complexType name="Amount">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Value" type="xs:decimal" />
+      <xs:element minOccurs="0" name="Currency" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Amount" nillable="true" type="tns:Amount" />
+  <xs:complexType name="CreditCardDetails">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:CreditCard">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="CreditLimit" nillable="true" type="xs:decimal" />
+          <xs:element minOccurs="0" name="Issuer" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="ChargeBranch" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="ChargeLedger" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="ChargeAccount" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="MinPaymentAmount" nillable="true" type="xs:decimal" />
+          <xs:element minOccurs="0" name="AuthorizationLimitValidTo" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="AugmentedAuthorizationLimit" nillable="true" type="xs:decimal" />
+          <xs:element minOccurs="0" name="AugmentedAuthorizationLimitExpiration" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="ForeignAuthorizationLimit" nillable="true" type="tns:Amount" />
+          <xs:element minOccurs="0" name="AugmentedDomesticAuthorizationLimit" nillable="true" type="tns:Amount" />
+          <xs:element minOccurs="0" name="AugmentedDomesticAuthorizationLimitExpiration" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="AugmentedForeignAuthorizationLimit" nillable="true" type="tns:Amount" />
+          <xs:element minOccurs="0" name="AugmentedForeignAuthorizationLimitExpiration" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="IcelandairLoyaltyClub" type="xs:boolean" />
+          <xs:element minOccurs="0" name="PaymentMethod" type="xs:boolean" />
+          <xs:element minOccurs="0" name="PaymentDueDate" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="LastPaymentDate" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="DeclineBillingStatement" type="xs:boolean" />
+          <xs:element minOccurs="0" name="InCollection" type="xs:boolean" />
+          <xs:element minOccurs="0" name="OlderDebtAmount" nillable="true" type="xs:decimal" />
+          <xs:element minOccurs="0" name="PenaltyInterestBase" nillable="true" type="xs:decimal" />
+          <xs:element minOccurs="0" name="LastDueAmount" nillable="true" type="xs:decimal" />
+          <xs:element minOccurs="0" name="BillingStatementInDefaultNr" type="xs:int" />
+          <xs:element minOccurs="0" name="DuePenaltyInterest" nillable="true" type="xs:decimal" />
+          <xs:element minOccurs="0" name="PenaltyInterestCurrentPeriod" nillable="true" type="xs:decimal" />
+          <xs:element minOccurs="0" name="TransactionAmountCurrentPeriod" nillable="true" type="xs:decimal" />
+          <xs:element minOccurs="0" name="CardInstallmentLoanRemainingBalance" nillable="true" type="xs:decimal" />
+          <xs:element minOccurs="0" name="CardPaymentDistributionLoanRemainingBalance" nillable="true" type="xs:decimal" />
+          <xs:element minOccurs="0" name="LightCardInstallmentLoanRemainingBalance" nillable="true" type="xs:decimal" />
+          <xs:element minOccurs="0" name="IsPrepaid" type="xs:boolean" />
+          <xs:element minOccurs="0" name="PrePaidBalance" type="xs:boolean" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="CreditCardDetails" nillable="true" type="tns:CreditCardDetails" />
+  <xs:complexType name="CreditCardTransactionResult">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Transactions" nillable="true" type="tns:ArrayOfCreditCardTransaction" />
+      <xs:element minOccurs="0" name="Paging" nillable="true" type="tns:Paging" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="CreditCardTransactionResult" nillable="true" type="tns:CreditCardTransactionResult" />
+  <xs:complexType name="ArrayOfCreditCardTransaction">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="CreditCardTransaction" nillable="true" type="tns:CreditCardTransaction" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfCreditCardTransaction" nillable="true" type="tns:ArrayOfCreditCardTransaction" />
+  <xs:complexType name="CreditCardTransaction">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="CardId" type="xs:long" />
+      <xs:element minOccurs="0" name="TransactionDate" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="ForeignAmount" nillable="true" type="tns:Amount" />
+      <xs:element minOccurs="0" name="Amount" nillable="true" type="tns:Amount" />
+      <xs:element minOccurs="0" name="CurrencyCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="TransactionId" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="DueDate" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="TransactionKey" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="AuthorizationNumber" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="IcelandairLoyaltyClubTransaction" type="xs:int" />
+      <xs:element minOccurs="0" name="IssuerBranch" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="MerchantName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="MerchantCity" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="MerchantCountryCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="IsEcardTransaction" type="xs:boolean" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="CreditCardTransaction" nillable="true" type="tns:CreditCardTransaction" />
+  <xs:complexType name="Paging">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="TotalPages" type="xs:int" />
+      <xs:element minOccurs="0" name="TotalRecords" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Paging" nillable="true" type="tns:Paging" />
+</xs:schema>

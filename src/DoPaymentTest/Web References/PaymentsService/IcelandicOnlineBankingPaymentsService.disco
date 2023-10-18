@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<discovery xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://schemas.xmlsoap.org/disco/">
+  <contractRef ref="https://ws-test.b2b.is/Payments/20051201/IcelandicOnlineBankingPaymentsService.asmx?wsdl" docRef="https://ws-test.b2b.is/Payments/20051201/IcelandicOnlineBankingPaymentsService.asmx" xmlns="http://schemas.xmlsoap.org/disco/scl/" />
+  <soap address="https://ws-test.b2b.is/Payments/20051201/IcelandicOnlineBankingPaymentsService.asmx" xmlns:q1="http://IcelandicOnlineBanking/2005/12/01/Payments" binding="q1:IcelandicOnlineBankingPaymentsSoap" xmlns="http://schemas.xmlsoap.org/disco/soap/" />
+  <soap address="https://ws-test.b2b.is/Payments/20051201/IcelandicOnlineBankingPaymentsService.asmx" xmlns:q2="http://IcelandicOnlineBanking/2005/12/01/Payments" binding="q2:IcelandicOnlineBankingPaymentsSoap1" xmlns="http://schemas.xmlsoap.org/disco/soap/" />
+</discovery>

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="a3392863-f709-432a-9d4b-fc13b5111967" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings>
+      <CollectionMapping TypeName="System.Collections.ObjectModel.Collection`1" Category="List" />
+    </CollectionMappings>
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>false</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="https://ws.b2b.is/CreditCards/20130901/CreditCardService.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="CreditCardService1.disco" MetadataType="Disco" ID="ef8f4edf-86e9-446f-a6da-a443fda3a2a8" SourceId="1" SourceUrl="https://ws.b2b.is/CreditCards/20130901/CreditCardService.svc?disco" />
+    <MetadataFile FileName="CreditCardService1.wsdl" MetadataType="Wsdl" ID="7ad92497-f849-445e-8725-966a51fea5f7" SourceId="1" SourceUrl="https://ws.b2b.is/CreditCards/20130901/CreditCardService.svc?wsdl" />
+    <MetadataFile FileName="CreditCardService4.xsd" MetadataType="Schema" ID="aa868167-ce01-4b49-abaa-6963def1e63b" SourceId="1" SourceUrl="https://ws.b2b.is/CreditCards/20130901/CreditCardService.svc?xsd=xsd2" />
+    <MetadataFile FileName="CreditCardService41.xsd" MetadataType="Schema" ID="1457122d-6328-4d63-8ac6-8704e694b868" SourceId="1" SourceUrl="https://ws.b2b.is/CreditCards/20130901/CreditCardService.svc?xsd=xsd3" />
+    <MetadataFile FileName="CreditCardService42.xsd" MetadataType="Schema" ID="2bf13a0a-baed-4875-b4f3-d87a426c29f6" SourceId="1" SourceUrl="https://ws.b2b.is/CreditCards/20130901/CreditCardService.svc?xsd=xsd0" />
+    <MetadataFile FileName="CreditCardService43.xsd" MetadataType="Schema" ID="409f05e5-edc1-40f2-af5c-8cd033fdd402" SourceId="1" SourceUrl="https://ws.b2b.is/CreditCards/20130901/CreditCardService.svc?xsd=xsd1" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://IcelandicOnlineBanking/2012/04/13/DocumentTypes" elementFormDefault="qualified" targetNamespace="http://IcelandicOnlineBanking/2012/04/13/DocumentTypes" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:complexType name="Document">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="DocumentInfo" type="tns:DocumentInfo" />
+      <xs:element minOccurs="0" maxOccurs="1" name="File" type="xs:base64Binary" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="DocumentInfo">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="PersonID" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="DocumentType" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="DocumentName" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="DocumentResultQuery">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="DocumentID" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="DocumentResult">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="DocumentID" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="DocumentInfo" type="tns:DocumentInfo" />
+      <xs:element minOccurs="1" maxOccurs="1" name="ProcessingStatus" type="tns:DocumentProcessingStatus" />
+      <xs:element minOccurs="0" maxOccurs="1" name="ProcessingResult" type="tns:DocumentProcessingResult" />
+      <xs:element minOccurs="1" maxOccurs="1" name="Date" type="xs:dateTime" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:simpleType name="DocumentProcessingStatus">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Received " />
+      <xs:enumeration value="InProgress " />
+      <xs:enumeration value="Completed " />
+      <xs:enumeration value="CompletedWithErrors" />
+      <xs:enumeration value="Failed" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="DocumentProcessingResult">
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="RecordsProcessed" type="xs:long" />
+      <xs:element minOccurs="1" maxOccurs="1" name="RecordsSkipped" type="xs:long" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="DocumentsResultQuery">
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="DateFrom" type="xs:date" />
+      <xs:element minOccurs="1" maxOccurs="1" name="DateTo" type="xs:date" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ArrayOfDocumentResult">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="DocumentResult" type="tns:DocumentResult" />
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>

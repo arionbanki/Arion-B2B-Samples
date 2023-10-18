@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="441874ff-f93d-42cf-8c04-6254912f2039" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings>
+      <CollectionMapping TypeName="System.Collections.ObjectModel.Collection`1" Category="List" />
+    </CollectionMappings>
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="https://ws.b2b.is/Statements/20130101/AccountService.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="AccountService.xsd" MetadataType="Schema" ID="62e7440f-58fc-4261-acec-1886b70f4811" SourceId="1" SourceUrl="https://ws.b2b.is/Statements/20130101/AccountService.svc?xsd=xsd1" />
+    <MetadataFile FileName="AccountService1.xsd" MetadataType="Schema" ID="0eb5a2dc-46f4-47a5-9697-d49719e2c5dd" SourceId="1" SourceUrl="https://ws.b2b.is/Statements/20130101/AccountService.svc?xsd=xsd0" />
+    <MetadataFile FileName="AccountService.disco" MetadataType="Disco" ID="d3e7ce50-0a31-4810-afac-5ba4afbcb065" SourceId="1" SourceUrl="https://ws.b2b.is/Statements/20130101/AccountService.svc?disco" />
+    <MetadataFile FileName="AccountService2.xsd" MetadataType="Schema" ID="461540ee-f66a-4fca-8fa9-2105742645a5" SourceId="1" SourceUrl="https://ws.b2b.is/Statements/20130101/AccountService.svc?xsd=xsd2" />
+    <MetadataFile FileName="AccountService3.xsd" MetadataType="Schema" ID="dbe7f4bc-efb7-4ad0-b6a3-bf0e0349d228" SourceId="1" SourceUrl="https://ws.b2b.is/Statements/20130101/AccountService.svc?xsd=xsd3" />
+    <MetadataFile FileName="AccountService.wsdl" MetadataType="Wsdl" ID="367b91a1-5aa0-4ec4-8040-cdb09c0cf9af" SourceId="1" SourceUrl="https://ws.b2b.is/Statements/20130101/AccountService.svc?wsdl" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

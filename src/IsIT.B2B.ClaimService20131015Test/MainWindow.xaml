@@ -1,0 +1,212 @@
+﻿<Window x:Class="IsIT.B2B.ClaimService20131015Test.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Claims Schema 20131015 Sample Client" Height="715.95" Width="1031" AllowDrop="True"
+        Background="{DynamicResource {x:Static SystemColors.ControlBrushKey}}">
+    <Grid Loaded="Grid_Loaded" Margin="0,0,0,-116">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="335*"/>
+            <ColumnDefinition Width="44*"/>
+            <ColumnDefinition Width="644*"/>
+        </Grid.ColumnDefinitions>
+        <Label Content="Url:" Height="28" HorizontalAlignment="Left" Margin="12,12,0,0" x:Name="label1" VerticalAlignment="Top" Width="106" />
+        <WebBrowser Height="271" HorizontalAlignment="Left" Margin="16,401,0,0" x:Name="webBrowserRequestText" VerticalAlignment="Top" Width="459" Grid.ColumnSpan="3" />
+        <WebBrowser Height="271" Margin="218,401,18,0" x:Name="webBrowserResponseText" VerticalAlignment="Top" Grid.Column="2" />
+        <Label Content="Credentials" Height="28" HorizontalAlignment="Left" Margin="12,46,0,0" x:Name="label2" VerticalAlignment="Top" Width="106" />
+        <TextBox Height="23" HorizontalAlignment="Left" Margin="59,76,0,0" x:Name="UserNameTextBox" VerticalAlignment="Top" Width="120" TabIndex="2" Grid.Column="2" />
+        <Label Content="Username" Height="28" HorizontalAlignment="Left" Margin="59,48,0,0" x:Name="label3" VerticalAlignment="Top" Grid.Column="2" />
+        <Label Content="Password" Height="28" HorizontalAlignment="Left" Margin="218,48,0,0" x:Name="label4" VerticalAlignment="Top" Grid.Column="2" />
+        <ComboBox Height="23" HorizontalAlignment="Left" Margin="132,12,0,0" x:Name="comboBoxUrl" VerticalAlignment="Top" Width="873" IsEditable="True" TabIndex="1" SelectedIndex="0" Grid.ColumnSpan="3" >
+            <ComboBoxItem Content="https://ws.b2b.is/Claims/20131015/ClaimService.svc"/>
+        </ComboBox>
+        <PasswordBox Height="23" HorizontalAlignment="Left" Margin="218,76,0,0" x:Name="PasswordTextBox" VerticalAlignment="Top" Width="120" TabIndex="3" Grid.Column="2" />
+        <Label Content="Certificate" HorizontalAlignment="Left" Margin="132,46,0,0" VerticalAlignment="Top"/>
+        <ComboBox x:Name="ComboBoxCertificate" HorizontalAlignment="Left" Margin="132,77,0,0" VerticalAlignment="Top" Width="222" Grid.ColumnSpan="2"/>
+        <TabControl HorizontalAlignment="Left" Height="256" Margin="16,128,0,0" VerticalAlignment="Top" Width="991" SelectionChanged="TabControl_SelectionChanged" Background="{DynamicResource {x:Static SystemColors.ControlBrushKey}}" Grid.ColumnSpan="3">
+            <TabItem Header="Query Claims" Height="24" VerticalAlignment="Bottom">
+                <Grid Background="#FFE5E5E5" Height="296" Margin="0,0,0,-72">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="127*"/>
+                        <ColumnDefinition Width="65*"/>
+                        <ColumnDefinition Width="37*"/>
+                        <ColumnDefinition Width="210*"/>
+                        <ColumnDefinition Width="24*"/>
+                        <ColumnDefinition Width="38*"/>
+                        <ColumnDefinition Width="484*"/>
+                    </Grid.ColumnDefinitions>
+                    <Button Content="QueryClaims&#xA;" Height="23" HorizontalAlignment="Left" Margin="12,157,0,0" x:Name="btnQueryClaims" VerticalAlignment="Top" Width="106" Click="btnQueryClaims_Click" Grid.Column="3" />
+                    <DataGrid AutoGenerateColumns="True" ItemsSource="{Binding}"  Height="170" HorizontalAlignment="Left" Margin="135,10,0,0" x:Name="queryClaimsDataGrid1" VerticalAlignment="Top" Width="611" SelectionChanged="queryClaimsDataGrid1_SelectionChanged" Grid.ColumnSpan="4" Grid.Column="3" />
+                    <Button x:Name="btnAlterSelected" Content="Alter Selected Claims ->" HorizontalAlignment="Left" Height="23" Margin="334,185,0,0" VerticalAlignment="Top" Width="140" RenderTransformOrigin="0.717,0.522" IsEnabled="False" Click="btnAlterSelected_Click" Grid.Column="6"/>
+                    <Label Content="Claimant" Margin="10,6,32,264" Grid.ColumnSpan="2"/>
+                    <TextBox x:Name="txtQueryClaimClaimant" Margin="16,35,32,243" Text="6606129980" Grid.ColumnSpan="2"/>
+                    <Label Content="Payor" Margin="10,53,32,217" Grid.ColumnSpan="2"/>
+                    <TextBox x:Name="txtQueryClaimPayor" Margin="16,79,32,199" Text="6606129980" Grid.ColumnSpan="2"/>
+                    <Label Content="Identifier" Margin="5,53,92,217" Grid.ColumnSpan="2" Grid.Column="2"/>
+                    <TextBox x:Name="txtQueryClaimIdentifier" Margin="11,79,92,199" Text="100" Grid.ColumnSpan="2" Grid.Column="2"/>
+                    <Label Content="Record From - Record To" Grid.ColumnSpan="2" Margin="6,6,91,264" Grid.Column="2"/>
+                    <TextBox x:Name="txtRecordFrom" Margin="10,35,0,243" HorizontalAlignment="Left" Text="1" Width="55" Grid.ColumnSpan="2" Grid.Column="2"/>
+                    <TextBox x:Name="txtRecordTo" Margin="63,35,0,243" HorizontalAlignment="Left" Text="5" Width="55" Grid.Column="3"/>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Alter Claims" Width="80">
+                <Grid Background="#FFE5E5E5">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="150*"/>
+                        <ColumnDefinition Width="47*"/>
+                    </Grid.ColumnDefinitions>
+                    <GroupBox Header="Claim Information" Width="970" Margin="8,28,7,10" Grid.ColumnSpan="2">
+
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="200*"  />
+                                <ColumnDefinition Width="939*" />
+                                <ColumnDefinition Width="0*" />
+                            </Grid.ColumnDefinitions>
+
+                            <StackPanel Grid.Column="0" HorizontalAlignment="Left" Width="150" Margin="10,10,0,10">
+                                <Label Content="Amount"/>
+                                <TextBox x:Name="txtAlterAmount" Margin="4,3,7,3" HorizontalAlignment="Left" Text="1" Width="55" TextChanged="TextBox_TextChanged"/>
+                            </StackPanel>
+
+
+                            <StackPanel Grid.Column="1" HorizontalAlignment="Left" Width="780" Margin="10,10,0,0" Height="133" VerticalAlignment="Top">
+                                <DataGrid AutoGenerateColumns="False" ItemsSource="{Binding}"  Height="132" x:Name="alterClaimsDataGrid1" HorizontalAlignment="Left" Width="780">
+
+                                    <DataGrid.Columns>
+                                        <DataGridTextColumn Binding="{Binding Key.Claimant}" Header="Claimant" />
+                                        <DataGridTextColumn Binding="{Binding Key.Account}" Header="Account" />
+                                        <DataGridTextColumn Binding="{Binding Key.DueDate}" Header="DueDate" />
+                                        <DataGridTextColumn Binding="{Binding Amount}" Header="Amount" />
+                                    </DataGrid.Columns>
+
+                                </DataGrid>
+                            </StackPanel>
+
+                            <Button Content="Alter Selected Claims&#xA;" Height="23" HorizontalAlignment="Left" Margin="10,89,0,0" x:Name="btnAlterClaims" VerticalAlignment="Top" Width="132" Click="btnAlterClaims_Click" />
+
+                            <Button Content="Cancel Selected Claims&#xA;" Height="23" HorizontalAlignment="Left" Margin="10,116,0,0" x:Name="btnCancelClaims" VerticalAlignment="Top" Width="132" Click="btnCancelClaims_Click"  />
+                        </Grid>
+                    </GroupBox>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Create Claims">
+                <Grid Background="#FFE5E5E5">
+
+                <GroupBox Header="Claim Information" Width="970" Margin="8,28,7,10">
+
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition  />
+                            <ColumnDefinition />
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+
+                        <StackPanel Grid.Column="0" HorizontalAlignment="Left" Width="150" Margin="10">
+                            <Label>Claimant</Label>
+                            <TextBox x:Name="txtClaimant" Margin="3" Text="6606129980"></TextBox>
+                            <Label>Payor</Label>
+                            <TextBox x:Name="txtPayor" Margin="3" Text="6606129980"></TextBox>
+                        </StackPanel>
+
+                        <StackPanel Grid.Column="1" HorizontalAlignment="Left" Width="150" Margin="10">
+                            <Label>Bank</Label>
+                            <TextBox x:Name="txtBank" Margin="3" Text="0308"></TextBox>
+                            <Label>Identifier</Label>
+                            <TextBox x:Name="txtIdentifier" Margin="3" Text="100"></TextBox>
+                        </StackPanel>
+
+
+                        <StackPanel Grid.Column="2" HorizontalAlignment="Left" Width="150" Margin="10">
+                            <Label>Number of claims</Label>
+                            <TextBox x:Name="txtNumberOfClaims" Margin="3" Width="30">1</TextBox>
+                        </StackPanel>
+
+                        <Button Content="Create Claims&#xA;" Height="23" HorizontalAlignment="Left" Margin="15,122,0,0" x:Name="btnCreateClaims" VerticalAlignment="Top" Width="106" Click="btnCreateClaims_Click" />
+                    </Grid>
+                </GroupBox>
+                </Grid>
+            </TabItem>
+
+
+            <TabItem x:Name="tabClaimOperationResult" Header="QueryClaimOperationResult" Width="160">
+                <Grid Background="#FFE5E5E5" Margin="0,3,0,-3">
+                    <GroupBox Header="Criteria" HorizontalAlignment="Left" Margin="10,19,0,0" VerticalAlignment="Top" Height="195" Width="213">
+                        <Button Content="Search" Height="23" HorizontalAlignment="Left" Margin="87,144,0,0" x:Name="btnSearch" VerticalAlignment="Top" Width="106" Click="btnSearch_Click" />
+                    </GroupBox>
+                    <Label Content="Id" HorizontalAlignment="Left" Margin="30,49,0,0" VerticalAlignment="Top"/>
+                    <TextBox x:Name="txtId" HorizontalAlignment="Left" Height="23" Margin="30,80,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="177"/>
+                    <GroupBox Header="Result" HorizontalAlignment="Left" Margin="241,19,0,0" VerticalAlignment="Top" Height="195" Width="720">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="170"  />
+                                <ColumnDefinition />
+                                <ColumnDefinition />
+                            </Grid.ColumnDefinitions>
+
+                            <StackPanel Grid.Column="0" HorizontalAlignment="Left" Width="150" Margin="10">
+                                <Label>Id</Label>
+                                <TextBox x:Name="txtBatchResultId" Margin="3"/>
+                                <Label>Status</Label>
+                                <TextBox x:Name="txtBatchResultStatus" Margin="3" TextChanged="TextBox_TextChanged_1"/>
+                            </StackPanel>
+
+                            <StackPanel Grid.Column="1" HorizontalAlignment="Left" Width="150" Margin="10">
+                                <Label>Sucess</Label>
+                                <DataGrid AutoGenerateColumns="False" ItemsSource="{Binding}"  Height="106" x:Name="successGrid" HorizontalAlignment="Left" Width="255" Margin="0,0,-105,0">
+                                    <DataGrid.Columns>
+                                        <DataGridTextColumn Binding="{Binding Key.Claimant}" Header="Claimant" />
+                                        <DataGridTextColumn Binding="{Binding Key.Account}" Header="Account" />
+                                        <DataGridTextColumn Binding="{Binding Key.DueDate}" Header="DueDate" />
+                                        <DataGridTextColumn Binding="{Binding Amount}" Header="Amount" />
+                                    </DataGrid.Columns>
+                                </DataGrid>
+                            </StackPanel>
+
+
+                            <StackPanel Grid.Column="2" HorizontalAlignment="Left" Width="150" Margin="10">
+                                <Label>Errors</Label>
+                                <DataGrid AutoGenerateColumns="False" ItemsSource="{Binding}"  Height="106" x:Name="errorsGrid" HorizontalAlignment="Left" Width="255" Margin="0,0,-105,0">
+                                    <DataGrid.Columns>
+                                        <DataGridTextColumn Binding="{Binding Key.Claimant}" Header="Claimant" />
+                                        <DataGridTextColumn Binding="{Binding Key.Account}" Header="Account" />
+                                        <DataGridTextColumn Binding="{Binding Key.DueDate}" Header="DueDate" />
+                                        <DataGridTextColumn Binding="{Binding Amount}" Header="Amount" />
+                                    </DataGrid.Columns>
+                                </DataGrid>
+                            </StackPanel>
+                        </Grid>
+                    </GroupBox>
+                </Grid>
+            </TabItem>
+            <TabItem Header="QueryClaimTransactions" Width="150">
+                <Grid Background="#FFE5E5E5" Height="228" VerticalAlignment="Top" Margin="0,0,10,0">
+                    <GroupBox Header="Claim Information" Width="970" Margin="8,28,7,10">
+
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition  />
+                                <ColumnDefinition />
+                            </Grid.ColumnDefinitions>
+
+                            <StackPanel Grid.Column="0" HorizontalAlignment="Left" Width="150" Margin="10">
+                                <Label Content="Claimant"/>
+                                <TextBox x:Name="txtTransactionClaimant" Margin="3" Text="6606129980"/>
+                                <Label Content="Account"/>
+                                <TextBox x:Name="txtTransactionAccount" Margin="3" Text=""/>
+                                <Label Content="DueDate"/>
+                                <TextBox x:Name="txtTransactionDueDate" Margin="3" Text="dd.MM.yyyy" TextChanged="txtTransactionDueDate_TextChanged"/>
+                            </StackPanel>
+
+                            <StackPanel Grid.Column="1" HorizontalAlignment="Left" Width="459" Margin="10,10,0,10">
+                                <DataGrid AutoGenerateColumns="True" ItemsSource="{Binding}"  Height="137" Margin="-170,10,0,0" x:Name="queryClaimsTransactionsDataGrid1" VerticalAlignment="Top" RenderTransformOrigin="1.199,0.453" />
+                            </StackPanel>
+
+
+                            <Button Content="QueryClaimTransactions" Height="23" HorizontalAlignment="Left" Margin="165,86,0,0" x:Name="btnQueryClaimTransactions" VerticalAlignment="Top" Width="145" Click="btnQueryClaimTransactions_Click" />
+                        </Grid>
+                    </GroupBox>
+                </Grid>
+            </TabItem>
+        </TabControl>
+    </Grid>
+</Window>

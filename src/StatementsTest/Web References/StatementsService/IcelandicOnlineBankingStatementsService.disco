@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<discovery xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://schemas.xmlsoap.org/disco/">
+  <contractRef ref="https://www.arionbanki.is/Services/OnlineBanking/2005/12/01/IcelandicOnlineBankingStatementsService.asmx?wsdl" docRef="https://www.arionbanki.is/Services/OnlineBanking/2005/12/01/IcelandicOnlineBankingStatementsService.asmx" xmlns="http://schemas.xmlsoap.org/disco/scl/" />
+  <soap address="https://www.arionbanki.is/Services/OnlineBanking/2005/12/01/IcelandicOnlineBankingStatementsService.asmx" xmlns:q1="http://IcelandicOnlineBanking/2005/12/01/Statements" binding="q1:IcelandicOnlineBankingStatementsSoap" xmlns="http://schemas.xmlsoap.org/disco/soap/" />
+  <soap address="https://www.arionbanki.is/Services/OnlineBanking/2005/12/01/IcelandicOnlineBankingStatementsService.asmx" xmlns:q2="http://IcelandicOnlineBanking/2005/12/01/Statements" binding="q2:IcelandicOnlineBankingStatementsSoap1" xmlns="http://schemas.xmlsoap.org/disco/soap/" />
+</discovery>

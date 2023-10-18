@@ -1,0 +1,1262 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://IcelandicOnlineBanking/2013/10/15/Claims" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="ClaimService" targetNamespace="http://IcelandicOnlineBanking/2013/10/15/Claims" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsp:Policy wsu:Id="CustomMutualCertificateBinding_IIcelandicOnlineBankingClaimService_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <sp:AsymmetricBinding xmlns:sp="http://docs.oasis-open.org/ws-sx/ws-securitypolicy/200702">
+          <wsp:Policy>
+            <sp:InitiatorToken>
+              <wsp:Policy>
+                <sp:X509Token sp:IncludeToken="http://docs.oasis-open.org/ws-sx/ws-securitypolicy/200702/IncludeToken/AlwaysToRecipient">
+                  <wsp:Policy>
+                    <sp:RequireThumbprintReference />
+                    <sp:WssX509V3Token10 />
+                  </wsp:Policy>
+                </sp:X509Token>
+              </wsp:Policy>
+            </sp:InitiatorToken>
+            <sp:RecipientToken>
+              <wsp:Policy>
+                <sp:X509Token sp:IncludeToken="http://docs.oasis-open.org/ws-sx/ws-securitypolicy/200702/IncludeToken/Never">
+                  <wsp:Policy>
+                    <sp:RequireThumbprintReference />
+                    <sp:WssX509V3Token10 />
+                  </wsp:Policy>
+                </sp:X509Token>
+              </wsp:Policy>
+            </sp:RecipientToken>
+            <sp:AlgorithmSuite>
+              <wsp:Policy>
+                <sp:Basic256 />
+              </wsp:Policy>
+            </sp:AlgorithmSuite>
+            <sp:Layout>
+              <wsp:Policy>
+                <sp:Strict />
+              </wsp:Policy>
+            </sp:Layout>
+            <sp:IncludeTimestamp />
+            <sp:OnlySignEntireHeadersAndBody />
+          </wsp:Policy>
+        </sp:AsymmetricBinding>
+        <sp:Wss11 xmlns:sp="http://docs.oasis-open.org/ws-sx/ws-securitypolicy/200702">
+          <wsp:Policy>
+            <sp:MustSupportRefThumbprint />
+          </wsp:Policy>
+        </sp:Wss11>
+        <sp:Trust13 xmlns:sp="http://docs.oasis-open.org/ws-sx/ws-securitypolicy/200702">
+          <wsp:Policy>
+            <sp:MustSupportIssuedTokens />
+            <sp:RequireClientEntropy />
+            <sp:RequireServerEntropy />
+          </wsp:Policy>
+        </sp:Trust13>
+        <sp:TransportBinding xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <wsp:Policy>
+            <sp:TransportToken>
+              <wsp:Policy>
+                <sp:HttpsToken RequireClientCertificate="false" />
+              </wsp:Policy>
+            </sp:TransportToken>
+            <sp:AlgorithmSuite>
+              <wsp:Policy>
+                <sp:Basic256 />
+              </wsp:Policy>
+            </sp:AlgorithmSuite>
+            <sp:Layout>
+              <wsp:Policy>
+                <sp:Strict />
+              </wsp:Policy>
+            </sp:Layout>
+            <sp:IncludeTimestamp />
+          </wsp:Policy>
+        </sp:TransportBinding>
+        <wsaw:UsingAddressing />
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsp:Policy wsu:Id="CustomMutualCertificateBinding_IIcelandicOnlineBankingClaimService_CreateClaims_Input_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <sp:SignedParts xmlns:sp="http://docs.oasis-open.org/ws-sx/ws-securitypolicy/200702">
+          <sp:Body />
+          <sp:Header Name="To" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="From" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="FaultTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="ReplyTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="MessageID" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="RelatesTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="Action" Namespace="http://www.w3.org/2005/08/addressing" />
+        </sp:SignedParts>
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsp:Policy wsu:Id="CustomMutualCertificateBinding_IIcelandicOnlineBankingClaimService_CreateClaims_output_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <sp:SignedParts xmlns:sp="http://docs.oasis-open.org/ws-sx/ws-securitypolicy/200702">
+          <sp:Body />
+          <sp:Header Name="To" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="From" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="FaultTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="ReplyTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="MessageID" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="RelatesTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="Action" Namespace="http://www.w3.org/2005/08/addressing" />
+        </sp:SignedParts>
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsp:Policy wsu:Id="CustomMutualCertificateBinding_IIcelandicOnlineBankingClaimService_CreateClaims_IOBSFault_Fault">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <sp:SignedParts xmlns:sp="http://docs.oasis-open.org/ws-sx/ws-securitypolicy/200702">
+          <sp:Body />
+          <sp:Header Name="To" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="From" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="FaultTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="ReplyTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="MessageID" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="RelatesTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="Action" Namespace="http://www.w3.org/2005/08/addressing" />
+        </sp:SignedParts>
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsp:Policy wsu:Id="CustomMutualCertificateBinding_IIcelandicOnlineBankingClaimService_AlterClaims_Input_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <sp:SignedParts xmlns:sp="http://docs.oasis-open.org/ws-sx/ws-securitypolicy/200702">
+          <sp:Body />
+          <sp:Header Name="To" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="From" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="FaultTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="ReplyTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="MessageID" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="RelatesTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="Action" Namespace="http://www.w3.org/2005/08/addressing" />
+        </sp:SignedParts>
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsp:Policy wsu:Id="CustomMutualCertificateBinding_IIcelandicOnlineBankingClaimService_AlterClaims_output_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <sp:SignedParts xmlns:sp="http://docs.oasis-open.org/ws-sx/ws-securitypolicy/200702">
+          <sp:Body />
+          <sp:Header Name="To" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="From" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="FaultTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="ReplyTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="MessageID" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="RelatesTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="Action" Namespace="http://www.w3.org/2005/08/addressing" />
+        </sp:SignedParts>
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsp:Policy wsu:Id="CustomMutualCertificateBinding_IIcelandicOnlineBankingClaimService_AlterClaims_IOBSFault_Fault">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <sp:SignedParts xmlns:sp="http://docs.oasis-open.org/ws-sx/ws-securitypolicy/200702">
+          <sp:Body />
+          <sp:Header Name="To" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="From" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="FaultTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="ReplyTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="MessageID" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="RelatesTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="Action" Namespace="http://www.w3.org/2005/08/addressing" />
+        </sp:SignedParts>
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsp:Policy wsu:Id="CustomMutualCertificateBinding_IIcelandicOnlineBankingClaimService_CancelClaims_Input_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <sp:SignedParts xmlns:sp="http://docs.oasis-open.org/ws-sx/ws-securitypolicy/200702">
+          <sp:Body />
+          <sp:Header Name="To" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="From" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="FaultTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="ReplyTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="MessageID" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="RelatesTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="Action" Namespace="http://www.w3.org/2005/08/addressing" />
+        </sp:SignedParts>
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsp:Policy wsu:Id="CustomMutualCertificateBinding_IIcelandicOnlineBankingClaimService_CancelClaims_output_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <sp:SignedParts xmlns:sp="http://docs.oasis-open.org/ws-sx/ws-securitypolicy/200702">
+          <sp:Body />
+          <sp:Header Name="To" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="From" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="FaultTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="ReplyTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="MessageID" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="RelatesTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="Action" Namespace="http://www.w3.org/2005/08/addressing" />
+        </sp:SignedParts>
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsp:Policy wsu:Id="CustomMutualCertificateBinding_IIcelandicOnlineBankingClaimService_CancelClaims_IOBSFault_Fault">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <sp:SignedParts xmlns:sp="http://docs.oasis-open.org/ws-sx/ws-securitypolicy/200702">
+          <sp:Body />
+          <sp:Header Name="To" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="From" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="FaultTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="ReplyTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="MessageID" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="RelatesTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="Action" Namespace="http://www.w3.org/2005/08/addressing" />
+        </sp:SignedParts>
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsp:Policy wsu:Id="CustomMutualCertificateBinding_IIcelandicOnlineBankingClaimService_CreateClaim_Input_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <sp:SignedParts xmlns:sp="http://docs.oasis-open.org/ws-sx/ws-securitypolicy/200702">
+          <sp:Body />
+          <sp:Header Name="To" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="From" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="FaultTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="ReplyTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="MessageID" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="RelatesTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="Action" Namespace="http://www.w3.org/2005/08/addressing" />
+        </sp:SignedParts>
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsp:Policy wsu:Id="CustomMutualCertificateBinding_IIcelandicOnlineBankingClaimService_CreateClaim_output_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <sp:SignedParts xmlns:sp="http://docs.oasis-open.org/ws-sx/ws-securitypolicy/200702">
+          <sp:Body />
+          <sp:Header Name="To" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="From" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="FaultTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="ReplyTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="MessageID" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="RelatesTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="Action" Namespace="http://www.w3.org/2005/08/addressing" />
+        </sp:SignedParts>
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsp:Policy wsu:Id="CustomMutualCertificateBinding_IIcelandicOnlineBankingClaimService_CreateClaim_IOBSFault_Fault">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <sp:SignedParts xmlns:sp="http://docs.oasis-open.org/ws-sx/ws-securitypolicy/200702">
+          <sp:Body />
+          <sp:Header Name="To" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="From" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="FaultTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="ReplyTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="MessageID" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="RelatesTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="Action" Namespace="http://www.w3.org/2005/08/addressing" />
+        </sp:SignedParts>
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsp:Policy wsu:Id="CustomMutualCertificateBinding_IIcelandicOnlineBankingClaimService_AlterClaim_Input_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <sp:SignedParts xmlns:sp="http://docs.oasis-open.org/ws-sx/ws-securitypolicy/200702">
+          <sp:Body />
+          <sp:Header Name="To" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="From" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="FaultTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="ReplyTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="MessageID" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="RelatesTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="Action" Namespace="http://www.w3.org/2005/08/addressing" />
+        </sp:SignedParts>
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsp:Policy wsu:Id="CustomMutualCertificateBinding_IIcelandicOnlineBankingClaimService_AlterClaim_output_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <sp:SignedParts xmlns:sp="http://docs.oasis-open.org/ws-sx/ws-securitypolicy/200702">
+          <sp:Body />
+          <sp:Header Name="To" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="From" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="FaultTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="ReplyTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="MessageID" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="RelatesTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="Action" Namespace="http://www.w3.org/2005/08/addressing" />
+        </sp:SignedParts>
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsp:Policy wsu:Id="CustomMutualCertificateBinding_IIcelandicOnlineBankingClaimService_AlterClaim_IOBSFault_Fault">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <sp:SignedParts xmlns:sp="http://docs.oasis-open.org/ws-sx/ws-securitypolicy/200702">
+          <sp:Body />
+          <sp:Header Name="To" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="From" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="FaultTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="ReplyTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="MessageID" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="RelatesTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="Action" Namespace="http://www.w3.org/2005/08/addressing" />
+        </sp:SignedParts>
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsp:Policy wsu:Id="CustomMutualCertificateBinding_IIcelandicOnlineBankingClaimService_CancelClaim_Input_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <sp:SignedParts xmlns:sp="http://docs.oasis-open.org/ws-sx/ws-securitypolicy/200702">
+          <sp:Body />
+          <sp:Header Name="To" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="From" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="FaultTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="ReplyTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="MessageID" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="RelatesTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="Action" Namespace="http://www.w3.org/2005/08/addressing" />
+        </sp:SignedParts>
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsp:Policy wsu:Id="CustomMutualCertificateBinding_IIcelandicOnlineBankingClaimService_CancelClaim_output_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <sp:SignedParts xmlns:sp="http://docs.oasis-open.org/ws-sx/ws-securitypolicy/200702">
+          <sp:Body />
+          <sp:Header Name="To" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="From" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="FaultTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="ReplyTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="MessageID" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="RelatesTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="Action" Namespace="http://www.w3.org/2005/08/addressing" />
+        </sp:SignedParts>
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsp:Policy wsu:Id="CustomMutualCertificateBinding_IIcelandicOnlineBankingClaimService_CancelClaim_IOBSFault_Fault">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <sp:SignedParts xmlns:sp="http://docs.oasis-open.org/ws-sx/ws-securitypolicy/200702">
+          <sp:Body />
+          <sp:Header Name="To" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="From" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="FaultTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="ReplyTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="MessageID" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="RelatesTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="Action" Namespace="http://www.w3.org/2005/08/addressing" />
+        </sp:SignedParts>
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsp:Policy wsu:Id="CustomMutualCertificateBinding_IIcelandicOnlineBankingClaimService_GetClaimOperationResult_Input_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <sp:SignedParts xmlns:sp="http://docs.oasis-open.org/ws-sx/ws-securitypolicy/200702">
+          <sp:Body />
+          <sp:Header Name="To" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="From" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="FaultTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="ReplyTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="MessageID" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="RelatesTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="Action" Namespace="http://www.w3.org/2005/08/addressing" />
+        </sp:SignedParts>
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsp:Policy wsu:Id="CustomMutualCertificateBinding_IIcelandicOnlineBankingClaimService_GetClaimOperationResult_output_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <sp:SignedParts xmlns:sp="http://docs.oasis-open.org/ws-sx/ws-securitypolicy/200702">
+          <sp:Body />
+          <sp:Header Name="To" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="From" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="FaultTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="ReplyTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="MessageID" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="RelatesTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="Action" Namespace="http://www.w3.org/2005/08/addressing" />
+        </sp:SignedParts>
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsp:Policy wsu:Id="CustomMutualCertificateBinding_IIcelandicOnlineBankingClaimService_GetClaimOperationResult_IOBSFault_Fault">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <sp:SignedParts xmlns:sp="http://docs.oasis-open.org/ws-sx/ws-securitypolicy/200702">
+          <sp:Body />
+          <sp:Header Name="To" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="From" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="FaultTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="ReplyTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="MessageID" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="RelatesTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="Action" Namespace="http://www.w3.org/2005/08/addressing" />
+        </sp:SignedParts>
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsp:Policy wsu:Id="CustomMutualCertificateBinding_IIcelandicOnlineBankingClaimService_QueryClaims_Input_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <sp:SignedParts xmlns:sp="http://docs.oasis-open.org/ws-sx/ws-securitypolicy/200702">
+          <sp:Body />
+          <sp:Header Name="To" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="From" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="FaultTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="ReplyTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="MessageID" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="RelatesTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="Action" Namespace="http://www.w3.org/2005/08/addressing" />
+        </sp:SignedParts>
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsp:Policy wsu:Id="CustomMutualCertificateBinding_IIcelandicOnlineBankingClaimService_QueryClaims_output_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <sp:SignedParts xmlns:sp="http://docs.oasis-open.org/ws-sx/ws-securitypolicy/200702">
+          <sp:Body />
+          <sp:Header Name="To" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="From" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="FaultTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="ReplyTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="MessageID" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="RelatesTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="Action" Namespace="http://www.w3.org/2005/08/addressing" />
+        </sp:SignedParts>
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsp:Policy wsu:Id="CustomMutualCertificateBinding_IIcelandicOnlineBankingClaimService_QueryClaims_IOBSFault_Fault">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <sp:SignedParts xmlns:sp="http://docs.oasis-open.org/ws-sx/ws-securitypolicy/200702">
+          <sp:Body />
+          <sp:Header Name="To" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="From" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="FaultTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="ReplyTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="MessageID" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="RelatesTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="Action" Namespace="http://www.w3.org/2005/08/addressing" />
+        </sp:SignedParts>
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsp:Policy wsu:Id="CustomMutualCertificateBinding_IIcelandicOnlineBankingClaimService_QueryClaim_Input_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <sp:SignedParts xmlns:sp="http://docs.oasis-open.org/ws-sx/ws-securitypolicy/200702">
+          <sp:Body />
+          <sp:Header Name="To" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="From" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="FaultTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="ReplyTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="MessageID" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="RelatesTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="Action" Namespace="http://www.w3.org/2005/08/addressing" />
+        </sp:SignedParts>
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsp:Policy wsu:Id="CustomMutualCertificateBinding_IIcelandicOnlineBankingClaimService_QueryClaim_output_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <sp:SignedParts xmlns:sp="http://docs.oasis-open.org/ws-sx/ws-securitypolicy/200702">
+          <sp:Body />
+          <sp:Header Name="To" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="From" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="FaultTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="ReplyTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="MessageID" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="RelatesTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="Action" Namespace="http://www.w3.org/2005/08/addressing" />
+        </sp:SignedParts>
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsp:Policy wsu:Id="CustomMutualCertificateBinding_IIcelandicOnlineBankingClaimService_QueryClaim_IOBSFault_Fault">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <sp:SignedParts xmlns:sp="http://docs.oasis-open.org/ws-sx/ws-securitypolicy/200702">
+          <sp:Body />
+          <sp:Header Name="To" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="From" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="FaultTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="ReplyTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="MessageID" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="RelatesTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="Action" Namespace="http://www.w3.org/2005/08/addressing" />
+        </sp:SignedParts>
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsp:Policy wsu:Id="CustomMutualCertificateBinding_IIcelandicOnlineBankingClaimService_QueryPayments_Input_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <sp:SignedParts xmlns:sp="http://docs.oasis-open.org/ws-sx/ws-securitypolicy/200702">
+          <sp:Body />
+          <sp:Header Name="To" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="From" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="FaultTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="ReplyTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="MessageID" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="RelatesTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="Action" Namespace="http://www.w3.org/2005/08/addressing" />
+        </sp:SignedParts>
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsp:Policy wsu:Id="CustomMutualCertificateBinding_IIcelandicOnlineBankingClaimService_QueryPayments_output_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <sp:SignedParts xmlns:sp="http://docs.oasis-open.org/ws-sx/ws-securitypolicy/200702">
+          <sp:Body />
+          <sp:Header Name="To" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="From" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="FaultTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="ReplyTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="MessageID" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="RelatesTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="Action" Namespace="http://www.w3.org/2005/08/addressing" />
+        </sp:SignedParts>
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsp:Policy wsu:Id="CustomMutualCertificateBinding_IIcelandicOnlineBankingClaimService_QueryPayments_IOBSFault_Fault">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <sp:SignedParts xmlns:sp="http://docs.oasis-open.org/ws-sx/ws-securitypolicy/200702">
+          <sp:Body />
+          <sp:Header Name="To" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="From" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="FaultTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="ReplyTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="MessageID" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="RelatesTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="Action" Namespace="http://www.w3.org/2005/08/addressing" />
+        </sp:SignedParts>
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsp:Policy wsu:Id="CustomMutualCertificateBinding_IIcelandicOnlineBankingClaimService_ReCreateClaim_Input_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <sp:SignedParts xmlns:sp="http://docs.oasis-open.org/ws-sx/ws-securitypolicy/200702">
+          <sp:Body />
+          <sp:Header Name="To" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="From" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="FaultTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="ReplyTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="MessageID" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="RelatesTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="Action" Namespace="http://www.w3.org/2005/08/addressing" />
+        </sp:SignedParts>
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsp:Policy wsu:Id="CustomMutualCertificateBinding_IIcelandicOnlineBankingClaimService_ReCreateClaim_output_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <sp:SignedParts xmlns:sp="http://docs.oasis-open.org/ws-sx/ws-securitypolicy/200702">
+          <sp:Body />
+          <sp:Header Name="To" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="From" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="FaultTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="ReplyTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="MessageID" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="RelatesTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="Action" Namespace="http://www.w3.org/2005/08/addressing" />
+        </sp:SignedParts>
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsp:Policy wsu:Id="CustomMutualCertificateBinding_IIcelandicOnlineBankingClaimService_ReCreateClaim_IOBSFault_Fault">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <sp:SignedParts xmlns:sp="http://docs.oasis-open.org/ws-sx/ws-securitypolicy/200702">
+          <sp:Body />
+          <sp:Header Name="To" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="From" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="FaultTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="ReplyTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="MessageID" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="RelatesTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="Action" Namespace="http://www.w3.org/2005/08/addressing" />
+        </sp:SignedParts>
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsp:Policy wsu:Id="CustomMutualCertificateBinding_IIcelandicOnlineBankingClaimService_ReCreateClaims_Input_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <sp:SignedParts xmlns:sp="http://docs.oasis-open.org/ws-sx/ws-securitypolicy/200702">
+          <sp:Body />
+          <sp:Header Name="To" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="From" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="FaultTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="ReplyTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="MessageID" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="RelatesTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="Action" Namespace="http://www.w3.org/2005/08/addressing" />
+        </sp:SignedParts>
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsp:Policy wsu:Id="CustomMutualCertificateBinding_IIcelandicOnlineBankingClaimService_ReCreateClaims_output_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <sp:SignedParts xmlns:sp="http://docs.oasis-open.org/ws-sx/ws-securitypolicy/200702">
+          <sp:Body />
+          <sp:Header Name="To" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="From" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="FaultTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="ReplyTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="MessageID" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="RelatesTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="Action" Namespace="http://www.w3.org/2005/08/addressing" />
+        </sp:SignedParts>
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsp:Policy wsu:Id="CustomMutualCertificateBinding_IIcelandicOnlineBankingClaimService_ReCreateClaims_IOBSFault_Fault">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <sp:SignedParts xmlns:sp="http://docs.oasis-open.org/ws-sx/ws-securitypolicy/200702">
+          <sp:Body />
+          <sp:Header Name="To" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="From" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="FaultTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="ReplyTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="MessageID" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="RelatesTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="Action" Namespace="http://www.w3.org/2005/08/addressing" />
+        </sp:SignedParts>
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsp:Policy wsu:Id="CustomMutualCertificateBinding_IIcelandicOnlineBankingClaimService_MarkClaimForSecondaryCollection_Input_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <sp:SignedParts xmlns:sp="http://docs.oasis-open.org/ws-sx/ws-securitypolicy/200702">
+          <sp:Body />
+          <sp:Header Name="To" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="From" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="FaultTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="ReplyTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="MessageID" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="RelatesTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="Action" Namespace="http://www.w3.org/2005/08/addressing" />
+        </sp:SignedParts>
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsp:Policy wsu:Id="CustomMutualCertificateBinding_IIcelandicOnlineBankingClaimService_MarkClaimForSecondaryCollection_output_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <sp:SignedParts xmlns:sp="http://docs.oasis-open.org/ws-sx/ws-securitypolicy/200702">
+          <sp:Body />
+          <sp:Header Name="To" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="From" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="FaultTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="ReplyTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="MessageID" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="RelatesTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="Action" Namespace="http://www.w3.org/2005/08/addressing" />
+        </sp:SignedParts>
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsp:Policy wsu:Id="CustomMutualCertificateBinding_IIcelandicOnlineBankingClaimService_MarkClaimForSecondaryCollection_IOBSFault_Fault">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <sp:SignedParts xmlns:sp="http://docs.oasis-open.org/ws-sx/ws-securitypolicy/200702">
+          <sp:Body />
+          <sp:Header Name="To" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="From" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="FaultTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="ReplyTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="MessageID" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="RelatesTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="Action" Namespace="http://www.w3.org/2005/08/addressing" />
+        </sp:SignedParts>
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsp:Policy wsu:Id="CustomMutualCertificateBinding_IIcelandicOnlineBankingClaimService_MarkClaimsForSecondaryCollection_Input_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <sp:SignedParts xmlns:sp="http://docs.oasis-open.org/ws-sx/ws-securitypolicy/200702">
+          <sp:Body />
+          <sp:Header Name="To" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="From" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="FaultTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="ReplyTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="MessageID" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="RelatesTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="Action" Namespace="http://www.w3.org/2005/08/addressing" />
+        </sp:SignedParts>
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsp:Policy wsu:Id="CustomMutualCertificateBinding_IIcelandicOnlineBankingClaimService_MarkClaimsForSecondaryCollection_output_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <sp:SignedParts xmlns:sp="http://docs.oasis-open.org/ws-sx/ws-securitypolicy/200702">
+          <sp:Body />
+          <sp:Header Name="To" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="From" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="FaultTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="ReplyTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="MessageID" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="RelatesTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="Action" Namespace="http://www.w3.org/2005/08/addressing" />
+        </sp:SignedParts>
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsp:Policy wsu:Id="CustomMutualCertificateBinding_IIcelandicOnlineBankingClaimService_MarkClaimsForSecondaryCollection_IOBSFault_Fault">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <sp:SignedParts xmlns:sp="http://docs.oasis-open.org/ws-sx/ws-securitypolicy/200702">
+          <sp:Body />
+          <sp:Header Name="To" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="From" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="FaultTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="ReplyTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="MessageID" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="RelatesTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="Action" Namespace="http://www.w3.org/2005/08/addressing" />
+        </sp:SignedParts>
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsp:Policy wsu:Id="CustomMutualCertificateBinding_IIcelandicOnlineBankingClaimService_QueryClaimTransactions_Input_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <sp:SignedParts xmlns:sp="http://docs.oasis-open.org/ws-sx/ws-securitypolicy/200702">
+          <sp:Body />
+          <sp:Header Name="To" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="From" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="FaultTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="ReplyTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="MessageID" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="RelatesTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="Action" Namespace="http://www.w3.org/2005/08/addressing" />
+        </sp:SignedParts>
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsp:Policy wsu:Id="CustomMutualCertificateBinding_IIcelandicOnlineBankingClaimService_QueryClaimTransactions_output_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <sp:SignedParts xmlns:sp="http://docs.oasis-open.org/ws-sx/ws-securitypolicy/200702">
+          <sp:Body />
+          <sp:Header Name="To" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="From" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="FaultTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="ReplyTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="MessageID" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="RelatesTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="Action" Namespace="http://www.w3.org/2005/08/addressing" />
+        </sp:SignedParts>
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsp:Policy wsu:Id="CustomMutualCertificateBinding_IIcelandicOnlineBankingClaimService_QueryClaimTransactions_IOBSFault_Fault">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <sp:SignedParts xmlns:sp="http://docs.oasis-open.org/ws-sx/ws-securitypolicy/200702">
+          <sp:Body />
+          <sp:Header Name="To" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="From" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="FaultTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="ReplyTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="MessageID" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="RelatesTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="Action" Namespace="http://www.w3.org/2005/08/addressing" />
+        </sp:SignedParts>
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://IcelandicOnlineBanking/2013/10/15/Claims/Imports">
+      <xsd:import schemaLocation="https://ws-int.b2b.is/Claims/20131015/ClaimService.svc?xsd=xsd0" namespace="http://IcelandicOnlineBanking/2013/10/15/Claims" />
+      <xsd:import schemaLocation="https://ws-int.b2b.is/Claims/20131015/ClaimService.svc?xsd=xsd3" namespace="http://IcelandicOnlineBanking/2013/10/15/Exceptions" />
+      <xsd:import schemaLocation="https://ws-int.b2b.is/Claims/20131015/ClaimService.svc?xsd=xsd1" namespace="http://IcelandicOnlineBanking/2013/10/15/ClaimTypes" />
+      <xsd:import schemaLocation="https://ws-int.b2b.is/Claims/20131015/ClaimService.svc?xsd=xsd2" namespace="http://IcelandicOnlineBanking/2013/10/15/CommonTypes" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="IIcelandicOnlineBankingClaimService_CreateClaims_InputMessage">
+    <wsdl:part name="parameters" element="tns:CreateClaims" />
+  </wsdl:message>
+  <wsdl:message name="IIcelandicOnlineBankingClaimService_CreateClaims_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CreateClaimsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IIcelandicOnlineBankingClaimService_CreateClaims_IOBSFault_FaultMessage">
+    <wsdl:part xmlns:q1="http://IcelandicOnlineBanking/2013/10/15/Exceptions" name="detail" element="q1:IOBSFault" />
+  </wsdl:message>
+  <wsdl:message name="IIcelandicOnlineBankingClaimService_AlterClaims_InputMessage">
+    <wsdl:part name="parameters" element="tns:AlterClaims" />
+  </wsdl:message>
+  <wsdl:message name="IIcelandicOnlineBankingClaimService_AlterClaims_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AlterClaimsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IIcelandicOnlineBankingClaimService_AlterClaims_IOBSFault_FaultMessage">
+    <wsdl:part xmlns:q2="http://IcelandicOnlineBanking/2013/10/15/Exceptions" name="detail" element="q2:IOBSFault" />
+  </wsdl:message>
+  <wsdl:message name="IIcelandicOnlineBankingClaimService_CancelClaims_InputMessage">
+    <wsdl:part name="parameters" element="tns:CancelClaims" />
+  </wsdl:message>
+  <wsdl:message name="IIcelandicOnlineBankingClaimService_CancelClaims_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CancelClaimsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IIcelandicOnlineBankingClaimService_CancelClaims_IOBSFault_FaultMessage">
+    <wsdl:part xmlns:q3="http://IcelandicOnlineBanking/2013/10/15/Exceptions" name="detail" element="q3:IOBSFault" />
+  </wsdl:message>
+  <wsdl:message name="IIcelandicOnlineBankingClaimService_CreateClaim_InputMessage">
+    <wsdl:part name="parameters" element="tns:CreateClaim" />
+  </wsdl:message>
+  <wsdl:message name="IIcelandicOnlineBankingClaimService_CreateClaim_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CreateClaimResponse" />
+  </wsdl:message>
+  <wsdl:message name="IIcelandicOnlineBankingClaimService_CreateClaim_IOBSFault_FaultMessage">
+    <wsdl:part xmlns:q4="http://IcelandicOnlineBanking/2013/10/15/Exceptions" name="detail" element="q4:IOBSFault" />
+  </wsdl:message>
+  <wsdl:message name="IIcelandicOnlineBankingClaimService_AlterClaim_InputMessage">
+    <wsdl:part name="parameters" element="tns:AlterClaim" />
+  </wsdl:message>
+  <wsdl:message name="IIcelandicOnlineBankingClaimService_AlterClaim_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AlterClaimResponse" />
+  </wsdl:message>
+  <wsdl:message name="IIcelandicOnlineBankingClaimService_AlterClaim_IOBSFault_FaultMessage">
+    <wsdl:part xmlns:q5="http://IcelandicOnlineBanking/2013/10/15/Exceptions" name="detail" element="q5:IOBSFault" />
+  </wsdl:message>
+  <wsdl:message name="IIcelandicOnlineBankingClaimService_CancelClaim_InputMessage">
+    <wsdl:part name="parameters" element="tns:CancelClaim" />
+  </wsdl:message>
+  <wsdl:message name="IIcelandicOnlineBankingClaimService_CancelClaim_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CancelClaimResponse" />
+  </wsdl:message>
+  <wsdl:message name="IIcelandicOnlineBankingClaimService_CancelClaim_IOBSFault_FaultMessage">
+    <wsdl:part xmlns:q6="http://IcelandicOnlineBanking/2013/10/15/Exceptions" name="detail" element="q6:IOBSFault" />
+  </wsdl:message>
+  <wsdl:message name="IIcelandicOnlineBankingClaimService_GetClaimOperationResult_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetClaimOperationResult" />
+  </wsdl:message>
+  <wsdl:message name="IIcelandicOnlineBankingClaimService_GetClaimOperationResult_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetClaimOperationResultResponse" />
+  </wsdl:message>
+  <wsdl:message name="IIcelandicOnlineBankingClaimService_GetClaimOperationResult_IOBSFault_FaultMessage">
+    <wsdl:part xmlns:q7="http://IcelandicOnlineBanking/2013/10/15/Exceptions" name="detail" element="q7:IOBSFault" />
+  </wsdl:message>
+  <wsdl:message name="IIcelandicOnlineBankingClaimService_QueryClaims_InputMessage">
+    <wsdl:part name="parameters" element="tns:QueryClaims" />
+  </wsdl:message>
+  <wsdl:message name="IIcelandicOnlineBankingClaimService_QueryClaims_OutputMessage">
+    <wsdl:part name="parameters" element="tns:QueryClaimsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IIcelandicOnlineBankingClaimService_QueryClaims_IOBSFault_FaultMessage">
+    <wsdl:part xmlns:q8="http://IcelandicOnlineBanking/2013/10/15/Exceptions" name="detail" element="q8:IOBSFault" />
+  </wsdl:message>
+  <wsdl:message name="IIcelandicOnlineBankingClaimService_QueryClaim_InputMessage">
+    <wsdl:part name="parameters" element="tns:QueryClaim" />
+  </wsdl:message>
+  <wsdl:message name="IIcelandicOnlineBankingClaimService_QueryClaim_OutputMessage">
+    <wsdl:part name="parameters" element="tns:QueryClaimResponse" />
+  </wsdl:message>
+  <wsdl:message name="IIcelandicOnlineBankingClaimService_QueryClaim_IOBSFault_FaultMessage">
+    <wsdl:part xmlns:q9="http://IcelandicOnlineBanking/2013/10/15/Exceptions" name="detail" element="q9:IOBSFault" />
+  </wsdl:message>
+  <wsdl:message name="IIcelandicOnlineBankingClaimService_QueryPayments_InputMessage">
+    <wsdl:part name="parameters" element="tns:QueryPayments" />
+  </wsdl:message>
+  <wsdl:message name="IIcelandicOnlineBankingClaimService_QueryPayments_OutputMessage">
+    <wsdl:part name="parameters" element="tns:QueryPaymentsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IIcelandicOnlineBankingClaimService_QueryPayments_IOBSFault_FaultMessage">
+    <wsdl:part xmlns:q10="http://IcelandicOnlineBanking/2013/10/15/Exceptions" name="detail" element="q10:IOBSFault" />
+  </wsdl:message>
+  <wsdl:message name="IIcelandicOnlineBankingClaimService_ReCreateClaim_InputMessage">
+    <wsdl:part name="parameters" element="tns:ReCreateClaim" />
+  </wsdl:message>
+  <wsdl:message name="IIcelandicOnlineBankingClaimService_ReCreateClaim_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ReCreateClaimResponse" />
+  </wsdl:message>
+  <wsdl:message name="IIcelandicOnlineBankingClaimService_ReCreateClaim_IOBSFault_FaultMessage">
+    <wsdl:part xmlns:q11="http://IcelandicOnlineBanking/2013/10/15/Exceptions" name="detail" element="q11:IOBSFault" />
+  </wsdl:message>
+  <wsdl:message name="IIcelandicOnlineBankingClaimService_ReCreateClaims_InputMessage">
+    <wsdl:part name="parameters" element="tns:ReCreateClaims" />
+  </wsdl:message>
+  <wsdl:message name="IIcelandicOnlineBankingClaimService_ReCreateClaims_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ReCreateClaimsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IIcelandicOnlineBankingClaimService_ReCreateClaims_IOBSFault_FaultMessage">
+    <wsdl:part xmlns:q12="http://IcelandicOnlineBanking/2013/10/15/Exceptions" name="detail" element="q12:IOBSFault" />
+  </wsdl:message>
+  <wsdl:message name="IIcelandicOnlineBankingClaimService_MarkClaimForSecondaryCollection_InputMessage">
+    <wsdl:part name="parameters" element="tns:MarkClaimForSecondaryCollection" />
+  </wsdl:message>
+  <wsdl:message name="IIcelandicOnlineBankingClaimService_MarkClaimForSecondaryCollection_OutputMessage">
+    <wsdl:part name="parameters" element="tns:MarkClaimForSecondaryCollectionResponse" />
+  </wsdl:message>
+  <wsdl:message name="IIcelandicOnlineBankingClaimService_MarkClaimForSecondaryCollection_IOBSFault_FaultMessage">
+    <wsdl:part xmlns:q13="http://IcelandicOnlineBanking/2013/10/15/Exceptions" name="detail" element="q13:IOBSFault" />
+  </wsdl:message>
+  <wsdl:message name="IIcelandicOnlineBankingClaimService_MarkClaimsForSecondaryCollection_InputMessage">
+    <wsdl:part name="parameters" element="tns:MarkClaimsForSecondaryCollection" />
+  </wsdl:message>
+  <wsdl:message name="IIcelandicOnlineBankingClaimService_MarkClaimsForSecondaryCollection_OutputMessage">
+    <wsdl:part name="parameters" element="tns:MarkClaimsForSecondaryCollectionResponse" />
+  </wsdl:message>
+  <wsdl:message name="IIcelandicOnlineBankingClaimService_MarkClaimsForSecondaryCollection_IOBSFault_FaultMessage">
+    <wsdl:part xmlns:q14="http://IcelandicOnlineBanking/2013/10/15/Exceptions" name="detail" element="q14:IOBSFault" />
+  </wsdl:message>
+  <wsdl:message name="IIcelandicOnlineBankingClaimService_QueryClaimTransactions_InputMessage">
+    <wsdl:part name="parameters" element="tns:QueryClaimTransactions" />
+  </wsdl:message>
+  <wsdl:message name="IIcelandicOnlineBankingClaimService_QueryClaimTransactions_OutputMessage">
+    <wsdl:part name="parameters" element="tns:QueryClaimTransactionsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IIcelandicOnlineBankingClaimService_QueryClaimTransactions_IOBSFault_FaultMessage">
+    <wsdl:part xmlns:q15="http://IcelandicOnlineBanking/2013/10/15/Exceptions" name="detail" element="q15:IOBSFault" />
+  </wsdl:message>
+  <wsdl:portType name="IIcelandicOnlineBankingClaimService">
+    <wsdl:operation name="CreateClaims">
+      <wsdl:input wsaw:Action="http://IcelandicOnlineBanking/2013/10/15/CreateClaims" message="tns:IIcelandicOnlineBankingClaimService_CreateClaims_InputMessage" />
+      <wsdl:output wsaw:Action="http://IcelandicOnlineBanking/2013/10/15/Claims/IIcelandicOnlineBankingClaimService/CreateClaimsResponse" message="tns:IIcelandicOnlineBankingClaimService_CreateClaims_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://IcelandicOnlineBanking/2013/10/15/CreateClaims" name="IOBSFault" message="tns:IIcelandicOnlineBankingClaimService_CreateClaims_IOBSFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AlterClaims">
+      <wsdl:input wsaw:Action="http://IcelandicOnlineBanking/2013/10/15/AlterClaims" message="tns:IIcelandicOnlineBankingClaimService_AlterClaims_InputMessage" />
+      <wsdl:output wsaw:Action="http://IcelandicOnlineBanking/2013/10/15/Claims/IIcelandicOnlineBankingClaimService/AlterClaimsResponse" message="tns:IIcelandicOnlineBankingClaimService_AlterClaims_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://IcelandicOnlineBanking/2013/10/15/AlterClaims" name="IOBSFault" message="tns:IIcelandicOnlineBankingClaimService_AlterClaims_IOBSFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CancelClaims">
+      <wsdl:input wsaw:Action="http://IcelandicOnlineBanking/2013/10/15/CancelClaims" message="tns:IIcelandicOnlineBankingClaimService_CancelClaims_InputMessage" />
+      <wsdl:output wsaw:Action="http://IcelandicOnlineBanking/2013/10/15/Claims/IIcelandicOnlineBankingClaimService/CancelClaimsResponse" message="tns:IIcelandicOnlineBankingClaimService_CancelClaims_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://IcelandicOnlineBanking/2013/10/15/CancelClaims" name="IOBSFault" message="tns:IIcelandicOnlineBankingClaimService_CancelClaims_IOBSFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CreateClaim">
+      <wsdl:input wsaw:Action="http://IcelandicOnlineBanking/2013/10/15/CreateClaim" message="tns:IIcelandicOnlineBankingClaimService_CreateClaim_InputMessage" />
+      <wsdl:output wsaw:Action="http://IcelandicOnlineBanking/2013/10/15/Claims/IIcelandicOnlineBankingClaimService/CreateClaimResponse" message="tns:IIcelandicOnlineBankingClaimService_CreateClaim_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://IcelandicOnlineBanking/2013/10/15/CreateClaim" name="IOBSFault" message="tns:IIcelandicOnlineBankingClaimService_CreateClaim_IOBSFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AlterClaim">
+      <wsdl:input wsaw:Action="http://IcelandicOnlineBanking/2013/10/15/AlterClaim" message="tns:IIcelandicOnlineBankingClaimService_AlterClaim_InputMessage" />
+      <wsdl:output wsaw:Action="http://IcelandicOnlineBanking/2013/10/15/Claims/IIcelandicOnlineBankingClaimService/AlterClaimResponse" message="tns:IIcelandicOnlineBankingClaimService_AlterClaim_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://IcelandicOnlineBanking/2013/10/15/AlterClaim" name="IOBSFault" message="tns:IIcelandicOnlineBankingClaimService_AlterClaim_IOBSFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CancelClaim">
+      <wsdl:input wsaw:Action="http://IcelandicOnlineBanking/2013/10/15/CancelClaim" message="tns:IIcelandicOnlineBankingClaimService_CancelClaim_InputMessage" />
+      <wsdl:output wsaw:Action="http://IcelandicOnlineBanking/2013/10/15/Claims/IIcelandicOnlineBankingClaimService/CancelClaimResponse" message="tns:IIcelandicOnlineBankingClaimService_CancelClaim_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://IcelandicOnlineBanking/2013/10/15/CancelClaim" name="IOBSFault" message="tns:IIcelandicOnlineBankingClaimService_CancelClaim_IOBSFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetClaimOperationResult">
+      <wsdl:input wsaw:Action="http://IcelandicOnlineBanking/2013/10/15/GetClaimOperationResult" message="tns:IIcelandicOnlineBankingClaimService_GetClaimOperationResult_InputMessage" />
+      <wsdl:output wsaw:Action="http://IcelandicOnlineBanking/2013/10/15/Claims/IIcelandicOnlineBankingClaimService/GetClaimOperationResultResponse" message="tns:IIcelandicOnlineBankingClaimService_GetClaimOperationResult_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://IcelandicOnlineBanking/2013/10/15/GetClaimOperationResult" name="IOBSFault" message="tns:IIcelandicOnlineBankingClaimService_GetClaimOperationResult_IOBSFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="QueryClaims">
+      <wsdl:input wsaw:Action="http://IcelandicOnlineBanking/2013/10/15/QueryClaims" message="tns:IIcelandicOnlineBankingClaimService_QueryClaims_InputMessage" />
+      <wsdl:output wsaw:Action="http://IcelandicOnlineBanking/2013/10/15/Claims/IIcelandicOnlineBankingClaimService/QueryClaimsResponse" message="tns:IIcelandicOnlineBankingClaimService_QueryClaims_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://IcelandicOnlineBanking/2013/10/15/QueryClaims" name="IOBSFault" message="tns:IIcelandicOnlineBankingClaimService_QueryClaims_IOBSFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="QueryClaim">
+      <wsdl:input wsaw:Action="http://IcelandicOnlineBanking/2013/10/15/QueryClaim" message="tns:IIcelandicOnlineBankingClaimService_QueryClaim_InputMessage" />
+      <wsdl:output wsaw:Action="http://IcelandicOnlineBanking/2013/10/15/Claims/IIcelandicOnlineBankingClaimService/QueryClaimResponse" message="tns:IIcelandicOnlineBankingClaimService_QueryClaim_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://IcelandicOnlineBanking/2013/10/15/QueryClaim" name="IOBSFault" message="tns:IIcelandicOnlineBankingClaimService_QueryClaim_IOBSFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="QueryPayments">
+      <wsdl:input wsaw:Action="http://IcelandicOnlineBanking/2013/10/15/QueryPayments" message="tns:IIcelandicOnlineBankingClaimService_QueryPayments_InputMessage" />
+      <wsdl:output wsaw:Action="http://IcelandicOnlineBanking/2013/10/15/Claims/IIcelandicOnlineBankingClaimService/QueryPaymentsResponse" message="tns:IIcelandicOnlineBankingClaimService_QueryPayments_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://IcelandicOnlineBanking/2013/10/15/QueryPayments" name="IOBSFault" message="tns:IIcelandicOnlineBankingClaimService_QueryPayments_IOBSFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ReCreateClaim">
+      <wsdl:input wsaw:Action="http://IcelandicOnlineBanking/2013/10/15/ReCreateClaim" message="tns:IIcelandicOnlineBankingClaimService_ReCreateClaim_InputMessage" />
+      <wsdl:output wsaw:Action="http://IcelandicOnlineBanking/2013/10/15/Claims/IIcelandicOnlineBankingClaimService/ReCreateClaimResponse" message="tns:IIcelandicOnlineBankingClaimService_ReCreateClaim_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://IcelandicOnlineBanking/2013/10/15/ReCreateClaim" name="IOBSFault" message="tns:IIcelandicOnlineBankingClaimService_ReCreateClaim_IOBSFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ReCreateClaims">
+      <wsdl:input wsaw:Action="http://IcelandicOnlineBanking/2013/10/15/ReCreateClaims" message="tns:IIcelandicOnlineBankingClaimService_ReCreateClaims_InputMessage" />
+      <wsdl:output wsaw:Action="http://IcelandicOnlineBanking/2013/10/15/Claims/IIcelandicOnlineBankingClaimService/ReCreateClaimsResponse" message="tns:IIcelandicOnlineBankingClaimService_ReCreateClaims_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://IcelandicOnlineBanking/2013/10/15/ReCreateClaims" name="IOBSFault" message="tns:IIcelandicOnlineBankingClaimService_ReCreateClaims_IOBSFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="MarkClaimForSecondaryCollection">
+      <wsdl:input wsaw:Action="http://IcelandicOnlineBanking/2013/10/15/MarkClaimForSecondaryCollection" message="tns:IIcelandicOnlineBankingClaimService_MarkClaimForSecondaryCollection_InputMessage" />
+      <wsdl:output wsaw:Action="http://IcelandicOnlineBanking/2013/10/15/Claims/IIcelandicOnlineBankingClaimService/MarkClaimForSecondaryCollectionResponse" message="tns:IIcelandicOnlineBankingClaimService_MarkClaimForSecondaryCollection_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://IcelandicOnlineBanking/2013/10/15/MarkClaimForSecondaryCollection" name="IOBSFault" message="tns:IIcelandicOnlineBankingClaimService_MarkClaimForSecondaryCollection_IOBSFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="MarkClaimsForSecondaryCollection">
+      <wsdl:input wsaw:Action="http://IcelandicOnlineBanking/2013/10/15/MarkClaimsForSecondaryCollection" message="tns:IIcelandicOnlineBankingClaimService_MarkClaimsForSecondaryCollection_InputMessage" />
+      <wsdl:output wsaw:Action="http://IcelandicOnlineBanking/2013/10/15/Claims/IIcelandicOnlineBankingClaimService/MarkClaimsForSecondaryCollectionResponse" message="tns:IIcelandicOnlineBankingClaimService_MarkClaimsForSecondaryCollection_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://IcelandicOnlineBanking/2013/10/15/MarkClaimsForSecondaryCollection" name="IOBSFault" message="tns:IIcelandicOnlineBankingClaimService_MarkClaimsForSecondaryCollection_IOBSFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="QueryClaimTransactions">
+      <wsdl:input wsaw:Action="http://IcelandicOnlineBanking/2013/10/15/QueryClaimTransactions" message="tns:IIcelandicOnlineBankingClaimService_QueryClaimTransactions_InputMessage" />
+      <wsdl:output wsaw:Action="http://IcelandicOnlineBanking/2013/10/15/Claims/IIcelandicOnlineBankingClaimService/QueryClaimTransactionsResponse" message="tns:IIcelandicOnlineBankingClaimService_QueryClaimTransactions_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://IcelandicOnlineBanking/2013/10/15/QueryClaimTransactions" name="IOBSFault" message="tns:IIcelandicOnlineBankingClaimService_QueryClaimTransactions_IOBSFault_FaultMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="CustomMutualCertificateBinding_IIcelandicOnlineBankingClaimService" type="tns:IIcelandicOnlineBankingClaimService">
+    <wsp:PolicyReference URI="#CustomMutualCertificateBinding_IIcelandicOnlineBankingClaimService_policy" />
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="CreateClaims">
+      <soap12:operation soapAction="http://IcelandicOnlineBanking/2013/10/15/CreateClaims" style="document" />
+      <wsdl:input>
+        <wsp:PolicyReference URI="#CustomMutualCertificateBinding_IIcelandicOnlineBankingClaimService_CreateClaims_Input_policy" />
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <wsp:PolicyReference URI="#CustomMutualCertificateBinding_IIcelandicOnlineBankingClaimService_CreateClaims_output_policy" />
+        <soap12:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="IOBSFault">
+        <wsp:PolicyReference URI="#CustomMutualCertificateBinding_IIcelandicOnlineBankingClaimService_CreateClaims_IOBSFault_Fault" />
+        <soap12:fault use="literal" name="IOBSFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="AlterClaims">
+      <soap12:operation soapAction="http://IcelandicOnlineBanking/2013/10/15/AlterClaims" style="document" />
+      <wsdl:input>
+        <wsp:PolicyReference URI="#CustomMutualCertificateBinding_IIcelandicOnlineBankingClaimService_AlterClaims_Input_policy" />
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <wsp:PolicyReference URI="#CustomMutualCertificateBinding_IIcelandicOnlineBankingClaimService_AlterClaims_output_policy" />
+        <soap12:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="IOBSFault">
+        <wsp:PolicyReference URI="#CustomMutualCertificateBinding_IIcelandicOnlineBankingClaimService_AlterClaims_IOBSFault_Fault" />
+        <soap12:fault use="literal" name="IOBSFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="CancelClaims">
+      <soap12:operation soapAction="http://IcelandicOnlineBanking/2013/10/15/CancelClaims" style="document" />
+      <wsdl:input>
+        <wsp:PolicyReference URI="#CustomMutualCertificateBinding_IIcelandicOnlineBankingClaimService_CancelClaims_Input_policy" />
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <wsp:PolicyReference URI="#CustomMutualCertificateBinding_IIcelandicOnlineBankingClaimService_CancelClaims_output_policy" />
+        <soap12:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="IOBSFault">
+        <wsp:PolicyReference URI="#CustomMutualCertificateBinding_IIcelandicOnlineBankingClaimService_CancelClaims_IOBSFault_Fault" />
+        <soap12:fault use="literal" name="IOBSFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="CreateClaim">
+      <soap12:operation soapAction="http://IcelandicOnlineBanking/2013/10/15/CreateClaim" style="document" />
+      <wsdl:input>
+        <wsp:PolicyReference URI="#CustomMutualCertificateBinding_IIcelandicOnlineBankingClaimService_CreateClaim_Input_policy" />
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <wsp:PolicyReference URI="#CustomMutualCertificateBinding_IIcelandicOnlineBankingClaimService_CreateClaim_output_policy" />
+        <soap12:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="IOBSFault">
+        <wsp:PolicyReference URI="#CustomMutualCertificateBinding_IIcelandicOnlineBankingClaimService_CreateClaim_IOBSFault_Fault" />
+        <soap12:fault use="literal" name="IOBSFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="AlterClaim">
+      <soap12:operation soapAction="http://IcelandicOnlineBanking/2013/10/15/AlterClaim" style="document" />
+      <wsdl:input>
+        <wsp:PolicyReference URI="#CustomMutualCertificateBinding_IIcelandicOnlineBankingClaimService_AlterClaim_Input_policy" />
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <wsp:PolicyReference URI="#CustomMutualCertificateBinding_IIcelandicOnlineBankingClaimService_AlterClaim_output_policy" />
+        <soap12:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="IOBSFault">
+        <wsp:PolicyReference URI="#CustomMutualCertificateBinding_IIcelandicOnlineBankingClaimService_AlterClaim_IOBSFault_Fault" />
+        <soap12:fault use="literal" name="IOBSFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="CancelClaim">
+      <soap12:operation soapAction="http://IcelandicOnlineBanking/2013/10/15/CancelClaim" style="document" />
+      <wsdl:input>
+        <wsp:PolicyReference URI="#CustomMutualCertificateBinding_IIcelandicOnlineBankingClaimService_CancelClaim_Input_policy" />
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <wsp:PolicyReference URI="#CustomMutualCertificateBinding_IIcelandicOnlineBankingClaimService_CancelClaim_output_policy" />
+        <soap12:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="IOBSFault">
+        <wsp:PolicyReference URI="#CustomMutualCertificateBinding_IIcelandicOnlineBankingClaimService_CancelClaim_IOBSFault_Fault" />
+        <soap12:fault use="literal" name="IOBSFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="GetClaimOperationResult">
+      <soap12:operation soapAction="http://IcelandicOnlineBanking/2013/10/15/GetClaimOperationResult" style="document" />
+      <wsdl:input>
+        <wsp:PolicyReference URI="#CustomMutualCertificateBinding_IIcelandicOnlineBankingClaimService_GetClaimOperationResult_Input_policy" />
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <wsp:PolicyReference URI="#CustomMutualCertificateBinding_IIcelandicOnlineBankingClaimService_GetClaimOperationResult_output_policy" />
+        <soap12:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="IOBSFault">
+        <wsp:PolicyReference URI="#CustomMutualCertificateBinding_IIcelandicOnlineBankingClaimService_GetClaimOperationResult_IOBSFault_Fault" />
+        <soap12:fault use="literal" name="IOBSFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="QueryClaims">
+      <soap12:operation soapAction="http://IcelandicOnlineBanking/2013/10/15/QueryClaims" style="document" />
+      <wsdl:input>
+        <wsp:PolicyReference URI="#CustomMutualCertificateBinding_IIcelandicOnlineBankingClaimService_QueryClaims_Input_policy" />
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <wsp:PolicyReference URI="#CustomMutualCertificateBinding_IIcelandicOnlineBankingClaimService_QueryClaims_output_policy" />
+        <soap12:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="IOBSFault">
+        <wsp:PolicyReference URI="#CustomMutualCertificateBinding_IIcelandicOnlineBankingClaimService_QueryClaims_IOBSFault_Fault" />
+        <soap12:fault use="literal" name="IOBSFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="QueryClaim">
+      <soap12:operation soapAction="http://IcelandicOnlineBanking/2013/10/15/QueryClaim" style="document" />
+      <wsdl:input>
+        <wsp:PolicyReference URI="#CustomMutualCertificateBinding_IIcelandicOnlineBankingClaimService_QueryClaim_Input_policy" />
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <wsp:PolicyReference URI="#CustomMutualCertificateBinding_IIcelandicOnlineBankingClaimService_QueryClaim_output_policy" />
+        <soap12:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="IOBSFault">
+        <wsp:PolicyReference URI="#CustomMutualCertificateBinding_IIcelandicOnlineBankingClaimService_QueryClaim_IOBSFault_Fault" />
+        <soap12:fault use="literal" name="IOBSFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="QueryPayments">
+      <soap12:operation soapAction="http://IcelandicOnlineBanking/2013/10/15/QueryPayments" style="document" />
+      <wsdl:input>
+        <wsp:PolicyReference URI="#CustomMutualCertificateBinding_IIcelandicOnlineBankingClaimService_QueryPayments_Input_policy" />
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <wsp:PolicyReference URI="#CustomMutualCertificateBinding_IIcelandicOnlineBankingClaimService_QueryPayments_output_policy" />
+        <soap12:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="IOBSFault">
+        <wsp:PolicyReference URI="#CustomMutualCertificateBinding_IIcelandicOnlineBankingClaimService_QueryPayments_IOBSFault_Fault" />
+        <soap12:fault use="literal" name="IOBSFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="ReCreateClaim">
+      <soap12:operation soapAction="http://IcelandicOnlineBanking/2013/10/15/ReCreateClaim" style="document" />
+      <wsdl:input>
+        <wsp:PolicyReference URI="#CustomMutualCertificateBinding_IIcelandicOnlineBankingClaimService_ReCreateClaim_Input_policy" />
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <wsp:PolicyReference URI="#CustomMutualCertificateBinding_IIcelandicOnlineBankingClaimService_ReCreateClaim_output_policy" />
+        <soap12:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="IOBSFault">
+        <wsp:PolicyReference URI="#CustomMutualCertificateBinding_IIcelandicOnlineBankingClaimService_ReCreateClaim_IOBSFault_Fault" />
+        <soap12:fault use="literal" name="IOBSFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="ReCreateClaims">
+      <soap12:operation soapAction="http://IcelandicOnlineBanking/2013/10/15/ReCreateClaims" style="document" />
+      <wsdl:input>
+        <wsp:PolicyReference URI="#CustomMutualCertificateBinding_IIcelandicOnlineBankingClaimService_ReCreateClaims_Input_policy" />
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <wsp:PolicyReference URI="#CustomMutualCertificateBinding_IIcelandicOnlineBankingClaimService_ReCreateClaims_output_policy" />
+        <soap12:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="IOBSFault">
+        <wsp:PolicyReference URI="#CustomMutualCertificateBinding_IIcelandicOnlineBankingClaimService_ReCreateClaims_IOBSFault_Fault" />
+        <soap12:fault use="literal" name="IOBSFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="MarkClaimForSecondaryCollection">
+      <soap12:operation soapAction="http://IcelandicOnlineBanking/2013/10/15/MarkClaimForSecondaryCollection" style="document" />
+      <wsdl:input>
+        <wsp:PolicyReference URI="#CustomMutualCertificateBinding_IIcelandicOnlineBankingClaimService_MarkClaimForSecondaryCollection_Input_policy" />
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <wsp:PolicyReference URI="#CustomMutualCertificateBinding_IIcelandicOnlineBankingClaimService_MarkClaimForSecondaryCollection_output_policy" />
+        <soap12:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="IOBSFault">
+        <wsp:PolicyReference URI="#CustomMutualCertificateBinding_IIcelandicOnlineBankingClaimService_MarkClaimForSecondaryCollection_IOBSFault_Fault" />
+        <soap12:fault use="literal" name="IOBSFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="MarkClaimsForSecondaryCollection">
+      <soap12:operation soapAction="http://IcelandicOnlineBanking/2013/10/15/MarkClaimsForSecondaryCollection" style="document" />
+      <wsdl:input>
+        <wsp:PolicyReference URI="#CustomMutualCertificateBinding_IIcelandicOnlineBankingClaimService_MarkClaimsForSecondaryCollection_Input_policy" />
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <wsp:PolicyReference URI="#CustomMutualCertificateBinding_IIcelandicOnlineBankingClaimService_MarkClaimsForSecondaryCollection_output_policy" />
+        <soap12:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="IOBSFault">
+        <wsp:PolicyReference URI="#CustomMutualCertificateBinding_IIcelandicOnlineBankingClaimService_MarkClaimsForSecondaryCollection_IOBSFault_Fault" />
+        <soap12:fault use="literal" name="IOBSFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="QueryClaimTransactions">
+      <soap12:operation soapAction="http://IcelandicOnlineBanking/2013/10/15/QueryClaimTransactions" style="document" />
+      <wsdl:input>
+        <wsp:PolicyReference URI="#CustomMutualCertificateBinding_IIcelandicOnlineBankingClaimService_QueryClaimTransactions_Input_policy" />
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <wsp:PolicyReference URI="#CustomMutualCertificateBinding_IIcelandicOnlineBankingClaimService_QueryClaimTransactions_output_policy" />
+        <soap12:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="IOBSFault">
+        <wsp:PolicyReference URI="#CustomMutualCertificateBinding_IIcelandicOnlineBankingClaimService_QueryClaimTransactions_IOBSFault_Fault" />
+        <soap12:fault use="literal" name="IOBSFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="ClaimService">
+    <wsdl:port name="CustomMutualCertificateBinding_IIcelandicOnlineBankingClaimService" binding="tns:CustomMutualCertificateBinding_IIcelandicOnlineBankingClaimService">
+      <soap12:address location="https://ws-int.b2b.is/Claims/20131015/ClaimService.svc" />
+      <wsa10:EndpointReference>
+        <wsa10:Address>https://ws-int.b2b.is/Claims/20131015/ClaimService.svc</wsa10:Address>
+        <Identity xmlns="http://schemas.xmlsoap.org/ws/2006/02/addressingidentity">
+          <KeyInfo xmlns="http://www.w3.org/2000/09/xmldsig#">
+            <X509Data>
+              <X509Certificate>MIIGiTCCBXGgAwIBAgIQDO8aPyxg8HNhLKplKvK1VjANBgkqhkiG9w0BAQUFADBvMQswCQYDVQQGEwJVUzEVMBMGA1UEChMMRGlnaUNlcnQgSW5jMRkwFwYDVQQLExB3d3cuZGlnaWNlcnQuY29tMS4wLAYDVQQDEyVEaWdpQ2VydCBBc3N1cmVkIElEIENvZGUgU2lnbmluZyBDQS0xMB4XDTE0MDMwMzAwMDAwMFoXDTE1MDMyNTEyMDAwMFowVTELMAkGA1UEBhMCSVMxEjAQBgNVBAcTCVJleWtqYXZpazEYMBYGA1UEChMPQXJpb24gYmFua2kgaGYuMRgwFgYDVQQDEw9BcmlvbiBiYW5raSBoZi4wggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEKAoIBAQCyXVwyWZO2GtQpk+QBL2VD8GVokuoC/NPC4GtrVrBCcOvy7/gmp2+mb39AbvmzKH5tLUDcaZA08gVe1r8mnpx6uzLSfkCDQQ2k+jTFobuimP4yw2ypvKfjroTUwYHfkUzlOV5JN9UeSCXiOacGsKMQ+Ig+dZYyU+RVTgBAT9cyQKfk2b6g7dH3jiGPk8fQ7XWwzd7uBjHAg1TMemjaNudpz9MaRBmUwppWG/0A5GtIYmKW6ry/BVrJrlB0zQNfrCuKO+9eQ9gswn2iQ2MHCSMJEdTRG8kyeeWUNgf3CvDkSmPrRnWszWnGE6wHk3+zgiNPmZHRFoWeTrHGz/9LILQNAgMBAAGjggM5MIIDNTAfBgNVHSMEGDAWgBR7aM4pqsAXvkl64eU/1qf3RY81MjAdBgNVHQ4EFgQUI388AFI7i6A0cZAFJhUmAQSnItcwDgYDVR0PAQH/BAQDAgeAMBMGA1UdJQQMMAoGCCsGAQUFBwMDMHMGA1UdHwRsMGowM6AxoC+GLWh0dHA6Ly9jcmwzLmRpZ2ljZXJ0LmNvbS9hc3N1cmVkLWNzLTIwMTFhLmNybDAzoDGgL4YtaHR0cDovL2NybDQuZGlnaWNlcnQuY29tL2Fzc3VyZWQtY3MtMjAxMWEuY3JsMIIBxAYDVR0gBIIBuzCCAbcwggGzBglghkgBhv1sAwEwggGkMDoGCCsGAQUFBwIBFi5odHRwOi8vd3d3LmRpZ2ljZXJ0LmNvbS9zc2wtY3BzLXJlcG9zaXRvcnkuaHRtMIIBZAYIKwYBBQUHAgIwggFWHoIBUgBBAG4AeQAgAHUAcwBlACAAbwBmACAAdABoAGkAcwAgAEMAZQByAHQAaQBmAGkAYwBhAHQAZQAgAGMAbwBuAHMAdABpAHQAdQB0AGUAcwAgAGEAYwBjAGUAcAB0AGEAbgBjAGUAIABvAGYAIAB0AGgAZQAgAEQAaQBnAGkAQwBlAHIAdAAgAEMAUAAvAEMAUABTACAAYQBuAGQAIAB0AGgAZQAgAFIAZQBsAHkAaQBuAGcAIABQAGEAcgB0AHkAIABBAGcAcgBlAGUAbQBlAG4AdAAgAHcAaABpAGMAaAAgAGwAaQBtAGkAdAAgAGwAaQBhAGIAaQBsAGkAdAB5ACAAYQBuAGQAIABhAHIAZQAgAGkAbgBjAG8AcgBwAG8AcgBhAHQAZQBkACAAaABlAHIAZQBpAG4AIABiAHkAIAByAGUAZgBlAHIAZQBuAGMAZQAuMIGCBggrBgEFBQcBAQR2MHQwJAYIKwYBBQUHMAGGGGh0dHA6Ly9vY3NwLmRpZ2ljZXJ0LmNvbTBMBggrBgEFBQcwAoZAaHR0cDovL2NhY2VydHMuZGlnaWNlcnQuY29tL0RpZ2lDZXJ0QXNzdXJlZElEQ29kZVNpZ25pbmdDQS0xLmNydDAMBgNVHRMBAf8EAjAAMA0GCSqGSIb3DQEBBQUAA4IBAQCZIDZneMPNM3Y5rWiKPY+AKK90Cwgt01EcnnbrpfYdnl159FgPigQt2FC7g4ZJVXfk54fVLfx6uVhs1ujGlSwkFYrnK7hQgCBMmUZYocIBqaeN/3n4V8pSFV+RQidBP8IMSykVJHzXcM5icPY042b47BgN34pGrNpV4v+CSe1j3qZhA3BQl8kN1E0MJdHnjQ3Y8UeuFXBwF5DlposOY48mJUCxaKf/Iri7kPvKDk0iifnLEqGce9LU8gqLAJP+bqtKxz60/fS8eQ3x4oL1hBpnQ08Y6rLbcQdt32d+68EY8QrgHntAbLYyCECwUx3iKHWmFDldEzuA7B1BcdiLCpcq</X509Certificate>
+            </X509Data>
+          </KeyInfo>
+        </Identity>
+      </wsa10:EndpointReference>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

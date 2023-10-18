@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.b2b.is/2015/08/01/ForeignStatementTypes" elementFormDefault="qualified" targetNamespace="http://schemas.b2b.is/2015/08/01/ForeignStatementTypes" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:complexType name="ForeignAccountTransactionQuery">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Account" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="DateFrom" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="DateTo" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="PageNumber" type="xs:int" />
+      <xs:element minOccurs="0" name="PageSize" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ForeignAccountTransactionQuery" nillable="true" type="tns:ForeignAccountTransactionQuery" />
+  <xs:complexType name="ForeignAccountTransactionsResult">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Account" nillable="true" type="tns:ForeignAccount" />
+      <xs:element minOccurs="0" name="Transactions" nillable="true" type="tns:ArrayOfForeignAccountTransaction" />
+      <xs:element minOccurs="0" name="TotalCount" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ForeignAccountTransactionsResult" nillable="true" type="tns:ForeignAccountTransactionsResult" />
+  <xs:complexType name="ForeignAccount">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="AccountNumber" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="AccountType" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="OwnerName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="OwnerPersonId" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Currency" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Balance" type="xs:decimal" />
+      <xs:element minOccurs="0" name="Details" nillable="true" type="tns:ForeignAccountDetails" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ForeignAccount" nillable="true" type="tns:ForeignAccount" />
+  <xs:complexType name="ForeignAccountDetails">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="SwiftNumber" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ForeignAccountDetails" nillable="true" type="tns:ForeignAccountDetails" />
+  <xs:complexType name="ArrayOfForeignAccountTransaction">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ForeignAccountTransaction" nillable="true" type="tns:ForeignAccountTransaction" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfForeignAccountTransaction" nillable="true" type="tns:ArrayOfForeignAccountTransaction" />
+  <xs:complexType name="ForeignAccountTransaction">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ReferenceNumber" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="RelatedReference" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="StatementNumber" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="SequenceNumber" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="StatementDate" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="OpeningBalance" type="xs:decimal" />
+      <xs:element minOccurs="0" name="ValueDate" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="EntryDate" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="DebitCreditMark" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="IsPaymentReversed" type="xs:boolean" />
+      <xs:element minOccurs="0" name="FundsCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Amount" type="xs:decimal" />
+      <xs:element minOccurs="0" name="Currency" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="TransactionType" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CustomerReference" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="BankReference" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ClosingBalance" type="xs:decimal" />
+      <xs:element minOccurs="0" name="Description" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="InterimBalance" type="xs:decimal" />
+      <xs:element minOccurs="0" name="ClosingAvailableBalance" type="xs:decimal" />
+      <xs:element minOccurs="0" name="ForwardAvailableBalance" type="xs:decimal" />
+      <xs:element minOccurs="0" name="ExtraDescription" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CreatedTimestamp" type="xs:dateTime" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ForeignAccountTransaction" nillable="true" type="tns:ForeignAccountTransaction" />
+  <xs:complexType name="ForeignAccountStatementQuery">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Account" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="DateFrom" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="DateTo" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="PageNumber" type="xs:int" />
+      <xs:element minOccurs="0" name="PageSize" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ForeignAccountStatementQuery" nillable="true" type="tns:ForeignAccountStatementQuery" />
+  <xs:complexType name="ForeignAccountStatementResult">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Account" nillable="true" type="tns:ForeignAccount" />
+      <xs:element minOccurs="0" name="Statements" nillable="true" type="tns:ArrayOfForeignAccountStatement" />
+      <xs:element minOccurs="0" name="TotalCount" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ForeignAccountStatementResult" nillable="true" type="tns:ForeignAccountStatementResult" />
+  <xs:complexType name="ArrayOfForeignAccountStatement">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ForeignAccountStatement" nillable="true" type="tns:ForeignAccountStatement" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfForeignAccountStatement" nillable="true" type="tns:ArrayOfForeignAccountStatement" />
+  <xs:complexType name="ForeignAccountStatement">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ReferenceNumber" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="RelatedReference" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="StatementNumber" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="SequenceNumber" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="StatementDate" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="OpeningBalance" type="xs:decimal" />
+      <xs:element minOccurs="0" name="InterimBalance" type="xs:decimal" />
+      <xs:element minOccurs="0" name="StatementData" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CreatedTimestamp" type="xs:dateTime" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ForeignAccountStatement" nillable="true" type="tns:ForeignAccountStatement" />
+  <xs:complexType name="ForeignAccountsQuery">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="PageNumber" type="xs:int" />
+      <xs:element minOccurs="0" name="PageSize" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ForeignAccountsQuery" nillable="true" type="tns:ForeignAccountsQuery" />
+  <xs:complexType name="ForeignAccountsResult">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Accounts" nillable="true" type="tns:ArrayOfForeignAccount" />
+      <xs:element minOccurs="0" name="TotalCount" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ForeignAccountsResult" nillable="true" type="tns:ForeignAccountsResult" />
+  <xs:complexType name="ArrayOfForeignAccount">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ForeignAccount" nillable="true" type="tns:ForeignAccount" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfForeignAccount" nillable="true" type="tns:ArrayOfForeignAccount" />
+</xs:schema>

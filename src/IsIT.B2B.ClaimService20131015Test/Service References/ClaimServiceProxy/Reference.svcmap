@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="a695b0b8-4362-47c4-8d90-529dd6fedfcd" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings>
+      <CollectionMapping TypeName="System.Collections.ObjectModel.Collection`1" Category="List" />
+    </CollectionMappings>
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>false</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="https://ws-int.b2b.is/Claims/20131015/ClaimService.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="ClaimService.xsd" MetadataType="Schema" ID="1a2b7959-4caa-4034-b3df-a7605ab78bbf" SourceId="1" SourceUrl="https://ws-int.b2b.is/Claims/20131015/ClaimService.svc?xsd=xsd3" />
+    <MetadataFile FileName="ClaimService1.xsd" MetadataType="Schema" ID="3d5b2d07-041d-4b9d-bcd4-5f3ff3f543af" SourceId="1" SourceUrl="https://ws-int.b2b.is/Claims/20131015/ClaimService.svc?xsd=xsd2" />
+    <MetadataFile FileName="ClaimService2.xsd" MetadataType="Schema" ID="e16c2d1a-cb61-4448-9fcb-8ea641f8dcba" SourceId="1" SourceUrl="https://ws-int.b2b.is/Claims/20131015/ClaimService.svc?xsd=xsd1" />
+    <MetadataFile FileName="ClaimService.wsdl" MetadataType="Wsdl" ID="2df699d4-17a4-425d-8cbd-0ce7fb952b5d" SourceId="1" SourceUrl="https://ws-int.b2b.is/Claims/20131015/ClaimService.svc?wsdl" />
+    <MetadataFile FileName="ClaimService3.xsd" MetadataType="Schema" ID="29a7fb70-ba2a-4fd6-9f09-204e69f6e9d9" SourceId="1" SourceUrl="https://ws-int.b2b.is/Claims/20131015/ClaimService.svc?xsd=xsd0" />
+    <MetadataFile FileName="ClaimService.disco" MetadataType="Disco" ID="df61946e-4d96-4f05-be92-9c1fbd9b272e" SourceId="1" SourceUrl="https://ws-int.b2b.is/Claims/20131015/ClaimService.svc?disco" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

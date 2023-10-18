@@ -1,0 +1,9 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="IsIT.B2B.StatementsTest.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="IsIT_B2B_StatementsTest_StatementsService_IcelandicOnlineBankingStatementsService" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">https://www.arionbanki.is/Services/OnlineBanking/2005/12/01/IcelandicOnlineBankingStatementsService.asmx</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

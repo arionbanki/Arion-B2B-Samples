@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?><soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/03/addressing/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><soapenv:Header><wsse:Security xmlns:wsse="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd" soapenv:mustUnderstand="1"><wsse:BinarySecurityToken xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" EncodingType="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-soap-message-security-1.0#Base64Binary" ValueType="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-x509-token-profile-1.0#X509v3" wsu:Id="CertId-1185763">MIIDLDCCApWgAwIBAgILAQAAAAABH/Cu27AwDQYJKoZIhvcNAQEFBQAwVzELMAkGA1UEBhMCSVMxFTATBgNVBAoTDEF1ZGtlbm5pIGhmLjETMBEGA1UECxMKQ2xhc3MgMyBDQTEcMBoGA1UEAxMTQXVka2VubmkgQ2xhc3MgMyBDQTAeFw0wOTAzMTAxNDAwMDVaFw0xMDA1MDgxMzQ4MDBaMIGKMQswCQYDVQQGEwJJUzErMCkGA1UEChMiSHVzZmVsYWdpZCBWaWRhcmFzIDM1ICg1ODAyMDUwNzAwKTEZMBcGA1UEAxQQQmr2cmd2aW4gSvNuc3NvbjEeMBwGCSqGSIb3DQEJARYPYmpqQGFwcGxpY29uLmlzMRMwEQYDVQQFEwowNDA2NjA0Mjk5MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA2fetLcu5/O4AoWY0AB+7QiD2XRkt640W0MjgplpYsF/eCoawkGYyQ8bmAqXF6bFxcZZP/FytpK5hqGDHoBuvC6IkdcG9f/uGkB+V4ncA460FyAaQZePMNTH74qqVDf9CYX+/2zcUDXInORwH+GFls9YywWQZYJOSTUmQfbuOXSf7Lj7p1JdY8b3SbgJ3KbK3wKv/T6dQ4jiTZvrf8i7gJQXhs8CnvnfVIczpeyi+MZzMBWFYQDXiDBvqaXfhLVzYjHe/fKOJ4SCWSO2PqBsVBekfvPHOKyoJeFPlm5/YId3dFxJalLySPf4HRrUCryhB7+yKKQ5PRwtEif8phNy4iQIDAQABo0YwRDARBglghkgBhvhCAQEEBAMCBaAwDgYDVR0PAQH/BAQDAgTwMB8GA1UdIwQYMBaAFE1UP+W2Avmuj5Sa871pKRUB3CzrMA0GCSqGSIb3DQEBBQUAA4GBACz5gfv3A8NyPnIjTczOheQ3mcNHRrXMhswOQorZvQl+siruisBwrAUBmSFHzTd2g7ownAeNMQMT019+HNsXd9swEOkJK0nWTWYCNdPPwGQ6Ie2bheA1sfDF0uPZKOBzYMIPw4WYQ3f5aWqXt9Hd0AzWCzrjAZDZ4sjVgGE7637x</wsse:BinarySecurityToken><ds:Signature xmlns:ds="http://www.w3.org/2000/09/xmldsig#" Id="Signature-19164140">
+<ds:SignedInfo>
+<ds:CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/>
+<ds:SignatureMethod Algorithm="http://www.w3.org/2000/09/xmldsig#rsa-sha1"/>
+<ds:Reference URI="#id-10511735">
+<ds:Transforms>
+<ds:Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/>
+</ds:Transforms>
+<ds:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1"/>
+<ds:DigestValue>s4BfRv06H8it9wUmMyObsDaZnzI=</ds:DigestValue>
+</ds:Reference>
+<ds:Reference URI="#id-11892294">
+<ds:Transforms>
+<ds:Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/>
+</ds:Transforms>
+<ds:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1"/>
+<ds:DigestValue>4j41Ozg5PRtzK2QzB6HHL0vuL8c=</ds:DigestValue>
+</ds:Reference>
+<ds:Reference URI="#id-23595974">
+<ds:Transforms>
+<ds:Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/>
+</ds:Transforms>
+<ds:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1"/>
+<ds:DigestValue>6pABU92ZjfyrvG+ndGskISxcqIg=</ds:DigestValue>
+</ds:Reference>
+<ds:Reference URI="#id-28221633">
+<ds:Transforms>
+<ds:Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/>
+</ds:Transforms>
+<ds:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1"/>
+<ds:DigestValue>wK4+E3F5uDAO7OfrJS4nC7pogX0=</ds:DigestValue>
+</ds:Reference>
+<ds:Reference URI="#id-29094721">
+<ds:Transforms>
+<ds:Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/>
+</ds:Transforms>
+<ds:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1"/>
+<ds:DigestValue>Z6nD7cEPOcF7jOPvFF6d9pGy7NI=</ds:DigestValue>
+</ds:Reference>
+<ds:Reference URI="#Timestamp-29970419">
+<ds:Transforms>
+<ds:Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/>
+</ds:Transforms>
+<ds:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1"/>
+<ds:DigestValue>RUrhUxL0DrPBuxhF94807iAtdGY=</ds:DigestValue>
+</ds:Reference>
+</ds:SignedInfo>
+<ds:SignatureValue>
+pqDCqPB0HKmXpAV+dwFQQZXmaeYdPb4DsAuHxr0lqEU1fJBlYNvoqh3GFQ2jV4c4UEyBzDGdG7B2
+8JSlgppjZYdDPdxvq+Pzlxt0zXrSnEbIKDJzVK4O84JSErKprxmYbSF1tfId6f6ACy/110GMfKL2
+S7sbb2IlbrVkqG1AXv2Q4sCR0uMJoP+7vBSfbe868IS8OowehvlW2+8ARoQIJd+8sTnplV3bxycE
+92qq/24j3NuBpC2se579SPL+Ucwk2NOcQkUvtfWEtfwrdL5mMV7mXsEBGWx/Iz9AZd4vEelUemTT
+XSLxeuWsQ/7B4WcdeVOGf4IVaBZtucM8BWviKA==
+</ds:SignatureValue>
+<ds:KeyInfo Id="KeyId-16677479">
+<wsse:SecurityTokenReference xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" wsu:Id="STRId-31702353"><wsse:Reference URI="#CertId-1185763" ValueType="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-x509-token-profile-1.0#X509v3"/></wsse:SecurityTokenReference>
+</ds:KeyInfo>
+</ds:Signature><wsu:Timestamp xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" wsu:Id="Timestamp-29970419"><wsu:Created>2009-03-20T10:11:12.724Z</wsu:Created><wsu:Expires>2009-03-20T10:16:12.724Z</wsu:Expires></wsu:Timestamp><wsse:UsernameToken xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" wsu:Id="UsernameToken-19825156"><wsse:Username>xvidaras</wsse:Username><wsse:Password Type="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-username-token-profile-1.0#PasswordText">vidaras</wsse:Password><wsse:Nonce>UcIZUrzrCfeKLprUOptwRQ==</wsse:Nonce><wsu:Created>2009-03-20T10:11:12.712Z</wsu:Created></wsse:UsernameToken></wsse:Security><wsa:Action xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" wsu:Id="id-10511735">http://IcelandicOnlineBanking/2005/12/01/GetCurrencyRates</wsa:Action><wsa:MessageID xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" wsu:Id="id-11892294">uuid:6da4aef6-06a6-46f4-b57d-28b08eebdf70</wsa:MessageID><wsa:ReplyTo xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" wsu:Id="id-23595974"><wsa:Address>http://schemas.xmlsoap.org/ws/2004/03/addressing/role/anonymous</wsa:Address></wsa:ReplyTo><wsa:To xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" wsu:Id="id-28221633">https://www.kaupthing.is/services/onlinebanking/2005/12/01/IcelandicOnlineBankingStatementsService.asmx</wsa:To></soapenv:Header><soapenv:Body xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" wsu:Id="id-29094721"><xnsp0:CurrencyRateRequest xmlns:xnsp0="http://IcelandicOnlineBanking/2005/12/01/Statements">  <xnsp0:currencyType>ExchangeRate</xnsp0:currencyType>  <xnsp0:date>2009-02-10</xnsp0:date></xnsp0:CurrencyRateRequest></soapenv:Body></soapenv:Envelope>

@@ -1,0 +1,9 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="Kaupthing.IOB.PlaybackTrace.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="Kaupthing_IOB_PlaybackTrace_StatementsService_IcelandicOnlineBankingStatementsService" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">https://www.kaupthing.is/Services/OnlineBanking/2005/12/01/IcelandicOnlineBankingStatementsService.asmx</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

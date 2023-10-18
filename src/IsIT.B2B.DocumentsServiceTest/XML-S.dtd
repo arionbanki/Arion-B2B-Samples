@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<!--
+*******************************************************************************
+Copyright (c) 1997-2003 CheckFree Corporation
+All Rights Reserved
+
+file XML-S.dtd  - XML DTD for BlueGill statement data
+
+Description:
+
+This is the XML Document Type Definition (DTD) for statement data.  Data is
+grouped by statement.  Within a statement, the data is arranged into a
+hierarchy of sections and fields within sections.  Sections can be nested.
+Each field and section must be identified with a name.  Section and field
+names must be unique within a section.
+
+In the interest of compact data files, short element names can be used instead
+of the longer ones.  See the entity definitions for the alternative short names.
+*******************************************************************************
+-->
+
+<!--
+===============================================================================
+    E N T I T I E S
+===============================================================================
+-->
+
+<!-- Short forms for tag names -->
+<!ENTITY % Field            "F|Field">
+<!ENTITY % Section          "S|Section">
+<!ENTITY % Statement        "T|Statement">
+
+<!--
+===============================================================================
+    X M L - S
+===============================================================================
+-->
+<!ELEMENT XML-S                     (Controls?
+                                    ,Defaults?
+                                    ,(%Statement;)*
+                                    )
+>
+
+<!--
+===============================================================================
+    C O N T R O L S
+
+    Used to specify control totals for the entire file.
+
+    Statements  - the number of statements in the file.
+===============================================================================
+-->
+<!ELEMENT Controls                  (#PCDATA)>
+<!ATTLIST Controls
+    Statements  CDATA               #IMPLIED
+>
+
+<!--
+================================================================================
+    D E F A U L T S
+
+    Sets defaults for use throughout the file.  Typically, all statements in one
+    XML-S stream will have the same statement date.  These values can be specified
+    just once in this element.  These defaults help to reduce the overall size
+    of the stream.
+
+    StatementDate must be in the form YYYY/MM/DD.
+================================================================================
+-->
+<!ELEMENT Defaults                  (#PCDATA)>
+<!ATTLIST Defaults
+    StatementDate CDATA             #IMPLIED
+>
+
+<!--
+===============================================================================
+    S T A T E M E N T
+
+    Date - The effective date of the statement.  If not set, the value from
+           Defaults|StatementDate is used.
+    Acct - Account identifier.  Up to 32 characters long.
+    XKey - This is an optional additional key to support multiple statements in 
+           the same day
+===============================================================================
+-->
+<!ELEMENT Statement                 ((%Section;|%Field;)+)>
+<!ATTLIST Statement
+    Acct        CDATA               #REQUIRED
+    Date        CDATA               #IMPLIED
+    XKey        CDATA               #IMPLIED
+    DetailUrl   CDATA               #IMPLIED
+>
+<!ELEMENT T                         ((%Section;|%Field;)+)>
+<!ATTLIST T
+    Acct        CDATA               #REQUIRED
+    Date        CDATA               #IMPLIED
+    XKey        CDATA               #IMPLIED
+    DetailUrl   CDATA               #IMPLIED
+>
+
+<!--
+================================================================================
+    S E C T I O N
+
+    Name - The name of the section.
+    Occ  - The occurrence of the section (a number greater than zero or "next").
+================================================================================
+-->
+<!ELEMENT Section                   ((%Section;|%Field;)*)>
+<!ATTLIST Section
+    Name        CDATA               #REQUIRED
+    Occ         CDATA               "1"
+>
+<!ELEMENT S                         ((%Section;|%Field;)*)>
+<!ATTLIST S
+    Name        CDATA               #REQUIRED
+    Occ         CDATA               "1"
+>
+
+<!--
+===============================================================================
+    F I E L D
+
+    The data content of this element is the value for the field.
+
+    Name - The name of the field.
+    Type - The field's data type.  Dates must be formatted as YYYY/MM/DD
+           (e.g. use 1997/03/15 for Mar 15, 1997).
+===============================================================================
+-->
+<!ELEMENT Field                     (#PCDATA)>
+<!ATTLIST Field
+    Type        (String
+                |Date
+                |Number)            "String"
+    Name        CDATA               #REQUIRED
+>
+<!ELEMENT F                         (#PCDATA)>
+<!ATTLIST F
+    Type        (String
+                |Date
+                |Number)            "String"
+    Name        CDATA               #REQUIRED
+>

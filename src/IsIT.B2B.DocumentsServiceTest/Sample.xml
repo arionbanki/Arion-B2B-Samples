@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE XML-S SYSTEM "./XML-S.dtd"[]>
+<XML-S>
+	<Statement Acct="XXXXXXXXXXXXXXXXXXXX" Date="2013/08/15">
+		<?bgls.BlueGill.com DefinitionName=Lykilord?>
+		<?bgls.BlueGill.com User1=XXXXXXXXXX?>
+		<?bgls.BlueGill.com User3=TEMP-001?>
+		<?bgls.BlueGill.com User4=XXXXXXXX20201003261?>
+		<Field Name="Kennitala">XXXXXXXXXX</Field>
+		<Field Name="Name">Fyrirtæki bréf1</Field>
+	</Statement>
+</XML-S>

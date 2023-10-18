@@ -1,0 +1,349 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://IcelandicOnlineBanking/2013/10/15/ClaimTypes" elementFormDefault="qualified" targetNamespace="http://IcelandicOnlineBanking/2013/10/15/ClaimTypes" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="https://ws-int.b2b.is/Claims/20131015/ClaimService.svc?xsd=xsd2" namespace="http://IcelandicOnlineBanking/2013/10/15/CommonTypes" />
+  <xs:complexType name="Claim">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="Key" type="tns:ClaimKey" />
+      <xs:element minOccurs="0" maxOccurs="1" name="PayorID" type="xs:string" />
+      <xs:element minOccurs="1" maxOccurs="1" name="CancellationDate" type="xs:date" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Identifier" type="xs:string" />
+      <xs:element minOccurs="1" maxOccurs="1" name="Amount" type="xs:decimal" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Reference" type="xs:string" />
+      <xs:element minOccurs="1" maxOccurs="1" name="FinalDueDate" type="xs:date" />
+      <xs:element minOccurs="0" maxOccurs="1" name="BillNumber" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="CustomerNumber" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="NoticeAndPaymentFee" type="tns:NoticeAndPaymentFee" />
+      <xs:element minOccurs="0" maxOccurs="1" name="DefaultCharge" type="tns:DateRestrictedCharge" />
+      <xs:element minOccurs="1" maxOccurs="1" name="OtherCosts" type="xs:decimal" />
+      <xs:element minOccurs="1" maxOccurs="1" name="OtherDefaultCosts" type="xs:decimal" />
+      <xs:element minOccurs="0" maxOccurs="1" name="DefaultInterest" type="tns:DefaultInterest" />
+      <xs:element minOccurs="0" maxOccurs="1" name="CurrencyInformation" type="tns:CurrencyInformation" />
+      <xs:element minOccurs="1" maxOccurs="1" name="PermitOutOfSequencePayment" type="xs:boolean" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Discount" type="tns:DiscountCharge" />
+      <xs:element minOccurs="1" maxOccurs="1" name="IsPartialPaymentAllowed" type="xs:boolean" />
+      <xs:element minOccurs="0" maxOccurs="1" name="BillPresentmentSystem" type="tns:BillPresentmentSystem" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Printing" type="tns:Printing" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ClaimKey">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="Claimant" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Account" type="xs:string" />
+      <xs:element minOccurs="1" maxOccurs="1" name="DueDate" type="xs:date" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="NoticeAndPaymentFee">
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="Printing" type="xs:decimal" />
+      <xs:element minOccurs="1" maxOccurs="1" name="Paperless" type="xs:decimal" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="DateRestrictedCharge">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="First" type="tns:DiscountOrDefaultChargeBase" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Second" type="tns:DiscountOrDefaultChargeBase" />
+    </xs:sequence>
+    <xs:attribute name="ReferenceDate" type="tns:ReferenceDate" use="required" />
+  </xs:complexType>
+  <xs:complexType name="DiscountOrDefaultChargeBase" abstract="true">
+    <xs:simpleContent>
+      <xs:extension base="xs:decimal">
+        <xs:attribute name="Days" type="xs:int" use="required" />
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="DiscountOrDefaultChargeAmount">
+    <xs:simpleContent>
+      <xs:extension base="tns:DiscountOrDefaultChargeBase" />
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="DiscountOrDefaultChargePercentage">
+    <xs:simpleContent>
+      <xs:extension base="tns:DiscountOrDefaultChargeBase" />
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:simpleType name="ReferenceDate">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="DueDate" />
+      <xs:enumeration value="FinalDueDate" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="DiscountCharge">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:DateRestrictedCharge">
+        <xs:attribute default="false" name="IsPostRefDate" type="xs:boolean" />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="DefaultInterest">
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="Rule" type="tns:DefaultInterestRule" />
+      <xs:element minOccurs="1" maxOccurs="1" name="Percentage4" type="xs:decimal" />
+      <xs:element minOccurs="0" maxOccurs="1" name="SpecialCode" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:simpleType name="DefaultInterestRule">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="NoDefaultInterest" />
+      <xs:enumeration value="DefaultInterestAmount" />
+      <xs:enumeration value="DefaultInterestAmountAndDefaultCharge" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="CurrencyInformation">
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="ReferenceRate">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="ExchangeRate" />
+            <xs:enumeration value="NoteRate" />
+            <xs:enumeration value="CentralBankMidRate" />
+            <xs:enumeration value="CentralBankStatutoryRate" />
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element minOccurs="0" maxOccurs="1" name="Currency" type="xs:string" />
+      <xs:element minOccurs="1" maxOccurs="1" name="PaymentRate">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="DueDateRate" />
+            <xs:enumeration value="PaymentDateRate" />
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="BillPresentmentSystem">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="Type" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Parameters" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="Printing">
+    <xs:sequence>
+      <xs:element xmlns:q1="http://IcelandicOnlineBanking/2013/10/15/CommonTypes" minOccurs="0" maxOccurs="1" name="ClaimantAddress" type="q1:Address" />
+      <xs:element xmlns:q2="http://IcelandicOnlineBanking/2013/10/15/CommonTypes" minOccurs="0" maxOccurs="1" name="PayorAddress" type="q2:Address" />
+      <xs:element minOccurs="0" maxOccurs="1" name="ItemRows" type="tns:ArrayOfItemRow" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Comments" type="tns:ArrayOfString" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ArrayOfItemRow">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Item" type="tns:ItemRow" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ItemRow">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="Text" type="xs:string" />
+      <xs:element minOccurs="1" maxOccurs="1" name="Amount" type="xs:decimal" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ArrayOfString">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Comment" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ClaimInfo">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:Claim">
+        <xs:sequence>
+          <xs:element minOccurs="1" maxOccurs="1" name="Status" type="tns:ClaimStatus" />
+          <xs:element minOccurs="1" maxOccurs="1" name="State" type="tns:ClaimState" />
+          <xs:element minOccurs="0" maxOccurs="1" name="CategoryCode" type="xs:string" />
+          <xs:element minOccurs="1" maxOccurs="1" name="TotalAmountDue" type="xs:decimal" />
+          <xs:element minOccurs="1" maxOccurs="1" name="NoticeChargeAmount" type="xs:decimal" />
+          <xs:element minOccurs="1" maxOccurs="1" name="DefaultChargeAmount" type="xs:decimal" />
+          <xs:element minOccurs="1" maxOccurs="1" name="OtherCostsAmount" type="xs:decimal" />
+          <xs:element minOccurs="1" maxOccurs="1" name="OtherDefaultCostsAmount" type="xs:decimal" />
+          <xs:element minOccurs="1" maxOccurs="1" name="DefaultInterestAmount" type="xs:decimal" />
+          <xs:element minOccurs="1" maxOccurs="1" name="DiscountAmount" type="xs:decimal" />
+          <xs:element minOccurs="0" maxOccurs="1" name="SecondaryCollectionIdentifier" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="1" name="LegalCollectionIdentifier" type="xs:string" />
+          <xs:element minOccurs="1" maxOccurs="1" name="IsPartiallyPaid" type="xs:boolean" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:simpleType name="ClaimStatus">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Unpaid" />
+      <xs:enumeration value="Paid" />
+      <xs:enumeration value="Cancelled" />
+      <xs:enumeration value="Invalid" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="ClaimState">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="PrimaryCollection" />
+      <xs:enumeration value="SecondaryCollection" />
+      <xs:enumeration value="LegalCollection" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="ClaimOperationResult">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="ID" type="xs:string" />
+      <xs:element minOccurs="1" maxOccurs="1" name="Status" type="tns:BatchStatus" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Success" type="tns:ClaimResult" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Errors" type="tns:ClaimError" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:simpleType name="BatchStatus">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="InProgress" />
+      <xs:enumeration value="Completed" />
+      <xs:enumeration value="CompletedWithErrors" />
+      <xs:enumeration value="NotConfirmed" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="ClaimResult">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="Key" type="tns:ClaimKey" />
+      <xs:element minOccurs="1" maxOccurs="1" name="Print" type="xs:boolean" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ClaimError">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="Key" type="tns:ClaimKey" />
+      <xs:element xmlns:q3="http://IcelandicOnlineBanking/2013/10/15/CommonTypes" minOccurs="0" maxOccurs="1" name="Error" type="q3:Error" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ClaimsQuery">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="Claimant" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Identifier" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Period" type="tns:ClaimsQueryDateSpan" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Payor" type="xs:string" />
+      <xs:element minOccurs="1" maxOccurs="1" name="Status" type="tns:ClaimStatus" />
+      <xs:element minOccurs="1" maxOccurs="1" name="State" type="tns:ClaimState" />
+      <xs:element minOccurs="1" maxOccurs="1" name="RecordFrom" type="xs:unsignedInt" />
+      <xs:element minOccurs="1" maxOccurs="1" name="RecordTo" type="xs:unsignedInt" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ClaimsQueryDateSpan">
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="DateFrom" type="xs:date" />
+      <xs:element minOccurs="1" maxOccurs="1" name="DateTo" type="xs:date" />
+    </xs:sequence>
+    <xs:attribute name="DateSpanReferenceDate" type="tns:DateSpanReferenceDate" use="required" />
+  </xs:complexType>
+  <xs:simpleType name="DateSpanReferenceDate">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="DueDate" />
+      <xs:enumeration value="FinalDueDate" />
+      <xs:enumeration value="CancellationDate" />
+      <xs:enumeration value="CreationDate" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="QueryClaimsResult">
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="TotalCount" type="xs:unsignedInt" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Claims" type="tns:ArrayOfClaimInfo" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ArrayOfClaimInfo">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Claim" type="tns:ClaimInfo" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="PaymentsQuery">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="Claimant" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Identifier" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="DisposalAccount" type="xs:string" />
+      <xs:element minOccurs="1" maxOccurs="1" name="TransactionDateFrom" type="xs:date" />
+      <xs:element minOccurs="1" maxOccurs="1" name="TransactionDateTo" type="xs:date" />
+      <xs:element minOccurs="1" maxOccurs="1" name="RecordFrom" type="xs:unsignedInt" />
+      <xs:element minOccurs="1" maxOccurs="1" name="RecordTo" type="xs:unsignedInt" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="QueryPaymentsResult">
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="TotalCount" type="xs:unsignedInt" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Payments" type="tns:ArrayOfPayment" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ArrayOfPayment">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Payment" type="tns:Payment" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="Payment">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="Key" type="tns:ClaimKey" />
+      <xs:element minOccurs="0" maxOccurs="1" name="PayorID" type="xs:string" />
+      <xs:element minOccurs="1" maxOccurs="1" name="Amount" type="xs:decimal" />
+      <xs:element minOccurs="1" maxOccurs="1" name="FinalDueDate" type="xs:date" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Identifier" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Reference" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="CategoryCode" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="RedeemingBank" type="xs:string" />
+      <xs:element minOccurs="1" maxOccurs="1" name="TransactionDate" type="xs:dateTime" />
+      <xs:element minOccurs="1" maxOccurs="1" name="BookingDate" type="xs:date" />
+      <xs:element minOccurs="1" maxOccurs="1" name="ValueDate" type="xs:date" />
+      <xs:element minOccurs="1" maxOccurs="1" name="PaymentType">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="Complete" />
+            <xs:enumeration value="Partial" />
+            <xs:enumeration value="Refund" />
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element minOccurs="1" maxOccurs="1" name="AmountDeposited" type="xs:decimal" />
+      <xs:element minOccurs="1" maxOccurs="1" name="TotalAmount" type="xs:decimal" />
+      <xs:element minOccurs="1" maxOccurs="1" name="CapitalGainsTax" type="xs:decimal" />
+      <xs:element minOccurs="0" maxOccurs="1" name="BillNumber" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="CustomerNumber" type="xs:string" />
+      <xs:element minOccurs="1" maxOccurs="1" name="NoticeChargeAmount" type="xs:decimal" />
+      <xs:element minOccurs="1" maxOccurs="1" name="DefaultChargeAmount" type="xs:decimal" />
+      <xs:element minOccurs="1" maxOccurs="1" name="OtherCostsAmount" type="xs:decimal" />
+      <xs:element minOccurs="1" maxOccurs="1" name="OtherDefaultCostsAmount" type="xs:decimal" />
+      <xs:element minOccurs="1" maxOccurs="1" name="DefaultInterestAmount" type="xs:decimal" />
+      <xs:element minOccurs="1" maxOccurs="1" name="DiscountAmount" type="xs:decimal" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Currency" type="tns:CurrencyExchangeRate" />
+      <xs:element minOccurs="0" maxOccurs="1" name="BatchNumber" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="SecondaryCollectionIdentifier" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="LegalCollectionIdentifier" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="CurrencyExchangeRate">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="Currency" type="xs:string" />
+      <xs:element minOccurs="1" maxOccurs="1" name="Rate" type="xs:decimal" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ClaimTransactionsResult">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="Transactions" type="tns:ArrayOfClaimTransaction" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ArrayOfClaimTransaction">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ClaimTransaction" type="tns:ClaimTransaction" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ClaimTransaction">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="Claim" type="tns:Claim" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Payment" type="tns:Payment" />
+    </xs:sequence>
+    <xs:attribute name="TransactionDate" type="xs:dateTime" use="required" />
+    <xs:attribute name="TransactionType" type="tns:ClaimTransactionType" use="required" />
+  </xs:complexType>
+  <xs:simpleType name="ClaimTransactionType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Creation" />
+      <xs:enumeration value="Cancellation" />
+      <xs:enumeration value="Update" />
+      <xs:enumeration value="Payment" />
+      <xs:enumeration value="RefundClaimCreation" />
+      <xs:enumeration value="ReAdjustment" />
+      <xs:enumeration value="PaymentReAdjustment" />
+      <xs:enumeration value="PartialPaymentReAdjustment" />
+      <xs:enumeration value="TransferFromOldBank" />
+      <xs:enumeration value="TransferToNewBank" />
+      <xs:enumeration value="OptionalClaimCancellationByPayor" />
+      <xs:enumeration value="RefundPayment" />
+      <xs:enumeration value="CollectionReminderSentByBank" />
+    </xs:restriction>
+  </xs:simpleType>
+</xs:schema>

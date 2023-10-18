@@ -1,0 +1,496 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:s2="http://IcelandicOnlineBanking/2005/12/01/CommonTypes" xmlns:s1="http://IcelandicOnlineBanking/2005/12/01/PaymentTypes" xmlns:tns="http://IcelandicOnlineBanking/2005/12/01/Payments" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" targetNamespace="http://IcelandicOnlineBanking/2005/12/01/Payments" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://IcelandicOnlineBanking/2005/12/01/Payments">
+      <s:import namespace="http://IcelandicOnlineBanking/2005/12/01/PaymentTypes" />
+      <s:element name="DoPayment">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="payment" type="s1:Payment" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DoPaymentResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="paymentsResult" type="s1:PaymentsResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DoPayments">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="payments" type="s1:Payments" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DoPaymentsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="paymentsID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetPaymentResult">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="paymentID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetPaymentResultResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="paymentsResult" type="s1:PaymentsResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetPaymentsResult">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="paymentID" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="filter" type="s1:PaymentsStatus" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetPaymentsResultResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="paymentsResult" type="s1:PaymentsResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="PaymentsResult" nillable="true" type="s1:PaymentsResult" />
+    </s:schema>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://IcelandicOnlineBanking/2005/12/01/PaymentTypes">
+      <s:import namespace="http://IcelandicOnlineBanking/2005/12/01/CommonTypes" />
+      <s:complexType name="Payment">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Out" type="s1:PaymentOut" />
+          <s:element minOccurs="0" maxOccurs="1" name="In" type="s1:PaymentIn" />
+          <s:element minOccurs="1" maxOccurs="1" name="DateOfForwardPayment" type="s:date" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="PaymentOut">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Account" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="AccountOwnerID" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="CategoryCode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Reference" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="BillNumber" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Receipt" type="s1:Communication" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="Communication">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="PostalMail">
+            <s:complexType>
+              <s:complexContent mixed="false">
+                <s:extension base="s1:Receipt">
+                  <s:sequence>
+                    <s:choice minOccurs="1" maxOccurs="1">
+                      <s:element minOccurs="0" maxOccurs="1" name="ReceiverAddress" type="s2:Address" />
+                      <s:element minOccurs="1" maxOccurs="1" name="UsePersonID" type="s:boolean" />
+                    </s:choice>
+                  </s:sequence>
+                </s:extension>
+              </s:complexContent>
+            </s:complexType>
+          </s:element>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="EMail">
+            <s:complexType>
+              <s:complexContent mixed="false">
+                <s:extension base="s1:Receipt">
+                  <s:sequence>
+                    <s:element minOccurs="0" maxOccurs="1" name="EmailAddress" type="s:string" />
+                  </s:sequence>
+                </s:extension>
+              </s:complexContent>
+            </s:complexType>
+          </s:element>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="SMS">
+            <s:complexType>
+              <s:complexContent mixed="false">
+                <s:extension base="s1:Receipt">
+                  <s:sequence>
+                    <s:element minOccurs="0" maxOccurs="1" name="PhoneNumber" type="s2:PhoneNumber" />
+                  </s:sequence>
+                </s:extension>
+              </s:complexContent>
+            </s:complexType>
+          </s:element>
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="Receipt" abstract="true">
+        <s:attribute name="Language" type="s:string" />
+      </s:complexType>
+      <s:complexType name="PaymentIn">
+        <s:sequence>
+          <s:choice minOccurs="1" maxOccurs="1">
+            <s:element minOccurs="0" maxOccurs="1" name="ABGiro" type="s1:ABGiro" />
+            <s:element minOccurs="0" maxOccurs="1" name="CGiro" type="s1:CGiro" />
+            <s:element minOccurs="0" maxOccurs="1" name="PaymentSlip" type="s1:PaymentSlip" />
+            <s:element minOccurs="0" maxOccurs="1" name="Transfer" type="s1:Transfer" />
+          </s:choice>
+          <s:element minOccurs="1" maxOccurs="1" name="Amount" type="s:decimal" />
+          <s:element minOccurs="0" maxOccurs="1" name="Receipt" type="s1:Communication" />
+          <s:element minOccurs="0" maxOccurs="1" name="Description" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="BookingID" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ABGiro">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Account" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Reference" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="BillNumber" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="CategoryCode" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="CGiro">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Account" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="AccountOwnerID" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="BillNumber" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="CategoryCode" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="PaymentSlip">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Account" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="PersonID" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="DueDate" type="s:date" />
+          <s:element minOccurs="1" maxOccurs="1" name="IsDeposit" type="s:boolean" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="PaymentSlipInfo">
+        <s:complexContent mixed="false">
+          <s:extension base="s1:PaymentSlip">
+            <s:sequence>
+              <s:element minOccurs="1" maxOccurs="1" name="AmountDue" type="s:decimal" />
+              <s:element minOccurs="1" maxOccurs="1" name="DefaultCosts" type="s:decimal" />
+              <s:element minOccurs="1" maxOccurs="1" name="OtherCosts" type="s:decimal" />
+              <s:element minOccurs="1" maxOccurs="1" name="OtherDefaultCosts" type="s:decimal" />
+              <s:element minOccurs="1" maxOccurs="1" name="DefaultInterest" type="s:decimal" />
+              <s:element minOccurs="1" maxOccurs="1" name="NoticeAndPaymentFee" type="s:decimal" />
+              <s:element minOccurs="1" maxOccurs="1" name="Discount" type="s:decimal" />
+              <s:element minOccurs="0" maxOccurs="1" name="CategoryCode" type="s:string" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="Transfer">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Account" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="AccountOwnerID" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="CategoryCode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Reference" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="BillNumber" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="PaymentsResult">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="ID" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Status" type="s1:BatchStatus" />
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Success" type="s1:PaymentResultDetails" />
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Errors" type="s1:PaymentError" />
+          <s:element minOccurs="1" maxOccurs="1" name="DateOfPayment" type="s:dateTime" />
+        </s:sequence>
+      </s:complexType>
+      <s:simpleType name="BatchStatus">
+        <s:restriction base="s:string">
+          <s:enumeration value="InProgress" />
+          <s:enumeration value="Completed" />
+          <s:enumeration value="CompletedWithErrors" />
+          <s:enumeration value="Cancelled" />
+          <s:enumeration value="OnHold" />
+          <s:enumeration value="NotConfirmed" />
+        </s:restriction>
+      </s:simpleType>
+      <s:complexType name="PaymentResultDetails">
+        <s:sequence>
+          <s:choice minOccurs="1" maxOccurs="1">
+            <s:element minOccurs="0" maxOccurs="1" name="ABGiro" type="s1:ABGiro" />
+            <s:element minOccurs="0" maxOccurs="1" name="CGiro" type="s1:CGiro" />
+            <s:element minOccurs="0" maxOccurs="1" name="PaymentSlip" type="s1:PaymentSlipInfo" />
+            <s:element minOccurs="0" maxOccurs="1" name="Transfer" type="s1:Transfer" />
+          </s:choice>
+          <s:element minOccurs="1" maxOccurs="1" name="Amount" type="s:decimal" />
+          <s:element minOccurs="0" maxOccurs="1" name="Receipt" type="s1:Communication" />
+          <s:element minOccurs="0" maxOccurs="1" name="Description" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="BookingID" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="PaymentError">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Payment" type="s1:PaymentIn" />
+          <s:element minOccurs="0" maxOccurs="1" name="Error" type="s2:Error" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="Payments">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Out" type="s1:PaymentOut" />
+          <s:element minOccurs="0" maxOccurs="unbounded" name="In" type="s1:PaymentIn" />
+          <s:element minOccurs="1" maxOccurs="1" name="DateOfForwardPayment" type="s:date" />
+          <s:element minOccurs="0" maxOccurs="1" name="NameOfBatch" type="s:string" />
+        </s:sequence>
+        <s:attribute name="RollbackOnError" type="s:boolean" use="required" />
+        <s:attribute name="IsOneToMany" type="s:boolean" use="required" />
+      </s:complexType>
+      <s:simpleType name="PaymentsStatus">
+        <s:restriction base="s:string">
+          <s:enumeration value="GetStatus" />
+          <s:enumeration value="GetErrors" />
+          <s:enumeration value="GetOkay" />
+          <s:enumeration value="GetAll" />
+        </s:restriction>
+      </s:simpleType>
+    </s:schema>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://IcelandicOnlineBanking/2005/12/01/CommonTypes">
+      <s:complexType name="Address">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="AddressLine1" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="AddressLine2" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="PostCodeNumber" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="City" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Region" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Country" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="PhoneNumber">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="CountryCode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Number" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="Error">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Code" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Message" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="DoPaymentSoapIn">
+    <wsdl:part name="parameters" element="tns:DoPayment" />
+  </wsdl:message>
+  <wsdl:message name="DoPaymentSoapOut">
+    <wsdl:part name="parameters" element="tns:DoPaymentResponse" />
+  </wsdl:message>
+  <wsdl:message name="DoPaymentsSoapIn">
+    <wsdl:part name="parameters" element="tns:DoPayments" />
+  </wsdl:message>
+  <wsdl:message name="DoPaymentsSoapOut">
+    <wsdl:part name="parameters" element="tns:DoPaymentsResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetPaymentResultSoapIn">
+    <wsdl:part name="parameters" element="tns:GetPaymentResult" />
+  </wsdl:message>
+  <wsdl:message name="GetPaymentResultSoapOut">
+    <wsdl:part name="parameters" element="tns:GetPaymentResultResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetPaymentsResultSoapIn">
+    <wsdl:part name="parameters" element="tns:GetPaymentsResult" />
+  </wsdl:message>
+  <wsdl:message name="GetPaymentsResultSoapOut">
+    <wsdl:part name="parameters" element="tns:GetPaymentsResultResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetPaymentResultHttpGetIn">
+    <wsdl:part name="paymentID" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetPaymentResultHttpGetOut">
+    <wsdl:part name="Body" element="tns:PaymentsResult" />
+  </wsdl:message>
+  <wsdl:message name="GetPaymentsResultHttpGetIn">
+    <wsdl:part name="paymentID" type="s:string" />
+    <wsdl:part name="filter" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetPaymentsResultHttpGetOut">
+    <wsdl:part name="Body" element="tns:PaymentsResult" />
+  </wsdl:message>
+  <wsdl:message name="GetPaymentResultHttpPostIn">
+    <wsdl:part name="paymentID" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetPaymentResultHttpPostOut">
+    <wsdl:part name="Body" element="tns:PaymentsResult" />
+  </wsdl:message>
+  <wsdl:message name="GetPaymentsResultHttpPostIn">
+    <wsdl:part name="paymentID" type="s:string" />
+    <wsdl:part name="filter" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetPaymentsResultHttpPostOut">
+    <wsdl:part name="Body" element="tns:PaymentsResult" />
+  </wsdl:message>
+  <wsdl:portType name="IcelandicOnlineBankingPaymentsSoap">
+    <wsdl:operation name="DoPayment">
+      <wsdl:input message="tns:DoPaymentSoapIn" />
+      <wsdl:output message="tns:DoPaymentSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DoPayments">
+      <wsdl:input message="tns:DoPaymentsSoapIn" />
+      <wsdl:output message="tns:DoPaymentsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetPaymentResult">
+      <wsdl:input message="tns:GetPaymentResultSoapIn" />
+      <wsdl:output message="tns:GetPaymentResultSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetPaymentsResult">
+      <wsdl:input message="tns:GetPaymentsResultSoapIn" />
+      <wsdl:output message="tns:GetPaymentsResultSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="IcelandicOnlineBankingPaymentsServiceHttpGet">
+    <wsdl:operation name="GetPaymentResult">
+      <wsdl:input message="tns:GetPaymentResultHttpGetIn" />
+      <wsdl:output message="tns:GetPaymentResultHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetPaymentsResult">
+      <wsdl:input message="tns:GetPaymentsResultHttpGetIn" />
+      <wsdl:output message="tns:GetPaymentsResultHttpGetOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="IcelandicOnlineBankingPaymentsServiceHttpPost">
+    <wsdl:operation name="GetPaymentResult">
+      <wsdl:input message="tns:GetPaymentResultHttpPostIn" />
+      <wsdl:output message="tns:GetPaymentResultHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetPaymentsResult">
+      <wsdl:input message="tns:GetPaymentsResultHttpPostIn" />
+      <wsdl:output message="tns:GetPaymentsResultHttpPostOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="IcelandicOnlineBankingPaymentsSoap" type="tns:IcelandicOnlineBankingPaymentsSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="DoPayment">
+      <soap:operation soapAction="http://IcelandicOnlineBanking/2005/12/01/DoPayment" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DoPayments">
+      <soap:operation soapAction="http://IcelandicOnlineBanking/2005/12/01/DoPayments" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPaymentResult">
+      <soap:operation soapAction="http://IcelandicOnlineBanking/2005/12/01/GetPaymentResult" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPaymentsResult">
+      <soap:operation soapAction="http://IcelandicOnlineBanking/2005/12/01/GetPaymentsResult" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="IcelandicOnlineBankingPaymentsSoap1" type="tns:IcelandicOnlineBankingPaymentsSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="DoPayment">
+      <soap12:operation soapAction="http://IcelandicOnlineBanking/2005/12/01/DoPayment" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DoPayments">
+      <soap12:operation soapAction="http://IcelandicOnlineBanking/2005/12/01/DoPayments" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPaymentResult">
+      <soap12:operation soapAction="http://IcelandicOnlineBanking/2005/12/01/GetPaymentResult" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPaymentsResult">
+      <soap12:operation soapAction="http://IcelandicOnlineBanking/2005/12/01/GetPaymentsResult" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="IcelandicOnlineBankingPaymentsServiceHttpGet" type="tns:IcelandicOnlineBankingPaymentsServiceHttpGet">
+    <http:binding verb="GET" />
+    <wsdl:operation name="GetPaymentResult">
+      <http:operation location="/GetPaymentResult" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPaymentsResult">
+      <http:operation location="/GetPaymentsResult" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="IcelandicOnlineBankingPaymentsServiceHttpPost" type="tns:IcelandicOnlineBankingPaymentsServiceHttpPost">
+    <http:binding verb="POST" />
+    <wsdl:operation name="GetPaymentResult">
+      <http:operation location="/GetPaymentResult" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPaymentsResult">
+      <http:operation location="/GetPaymentsResult" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="IcelandicOnlineBankingPaymentsService">
+    <wsdl:port name="IcelandicOnlineBankingPaymentsSoap" binding="tns:IcelandicOnlineBankingPaymentsSoap">
+      <soap:address location="https://ws-test.b2b.is/Payments/20051201/IcelandicOnlineBankingPaymentsService.asmx" />
+    </wsdl:port>
+    <wsdl:port name="IcelandicOnlineBankingPaymentsSoap1" binding="tns:IcelandicOnlineBankingPaymentsSoap1">
+      <soap12:address location="https://ws-test.b2b.is/Payments/20051201/IcelandicOnlineBankingPaymentsService.asmx" />
+    </wsdl:port>
+    <wsdl:port name="IcelandicOnlineBankingPaymentsServiceHttpGet" binding="tns:IcelandicOnlineBankingPaymentsServiceHttpGet">
+      <http:address location="https://ws-test.b2b.is/Payments/20051201/IcelandicOnlineBankingPaymentsService.asmx" />
+    </wsdl:port>
+    <wsdl:port name="IcelandicOnlineBankingPaymentsServiceHttpPost" binding="tns:IcelandicOnlineBankingPaymentsServiceHttpPost">
+      <http:address location="https://ws-test.b2b.is/Payments/20051201/IcelandicOnlineBankingPaymentsService.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

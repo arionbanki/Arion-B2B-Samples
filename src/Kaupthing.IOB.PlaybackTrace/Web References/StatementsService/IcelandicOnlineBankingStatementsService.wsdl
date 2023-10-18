@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://IcelandicOnlineBanking/2005/12/01/Statements" xmlns:s1="http://IcelandicOnlineBanking/2005/12/01/StatementTypes" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:s2="http://IcelandicOnlineBanking/2005/12/01/CommonTypes" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" targetNamespace="http://IcelandicOnlineBanking/2005/12/01/Statements" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://IcelandicOnlineBanking/2005/12/01/Statements">
+      <s:import namespace="http://IcelandicOnlineBanking/2005/12/01/StatementTypes" />
+      <s:import namespace="http://IcelandicOnlineBanking/2005/12/01/CommonTypes" />
+      <s:element name="GetAccountStatement">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="accountStatement" type="s1:AccountStatement" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetAccountStatementResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="accountStatementResponse" type="s1:AccountStatementResponse" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CurrencyRateRequest">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="currencyType" type="s2:CurrencyType" />
+            <s:element minOccurs="1" maxOccurs="1" name="date" type="s:dateTime" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CurrencyRateResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="unbounded" name="currencyRates" type="s2:CurrencyRate" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://IcelandicOnlineBanking/2005/12/01/StatementTypes">
+      <s:import namespace="http://IcelandicOnlineBanking/2005/12/01/CommonTypes" />
+      <s:complexType name="AccountStatement">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Account" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="DateFrom" type="s:date" />
+          <s:element minOccurs="1" maxOccurs="1" name="DateTo" type="s:date" />
+          <s:element minOccurs="0" maxOccurs="1" name="RecordFrom" type="s:long" />
+          <s:element minOccurs="0" maxOccurs="1" name="RecordTo" type="s:long" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="AccountStatementResponse">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Account" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Currency" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Overdraft" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="Balance" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="AvailableAmount" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="Status" type="s2:Status" />
+          <s:element minOccurs="1" maxOccurs="1" name="TotalAmountWaiting" type="s:decimal" />
+          <s:element minOccurs="0" maxOccurs="1" name="IBAN" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="AccountOwnerID" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="CustomAccountName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="AccountInformation" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Transactions" type="s1:ArrayOfAccountTransaction" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfAccountTransaction">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Transaction" type="s1:AccountTransaction" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="AccountTransaction">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="TransactionID" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="TransactionDate" type="s:date" />
+          <s:element minOccurs="0" maxOccurs="1" name="ValueDate" type="s:date" />
+          <s:element minOccurs="0" maxOccurs="1" name="BatchNumber" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="RedeemingBank" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Transaction" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Reference" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="BillNumber" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="CategoryCode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Category" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ReferenceDetail" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="PayorID" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Amount" type="s:decimal" />
+          <s:element minOccurs="0" maxOccurs="1" name="Balance" type="s:decimal" />
+        </s:sequence>
+      </s:complexType>
+    </s:schema>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://IcelandicOnlineBanking/2005/12/01/CommonTypes">
+      <s:simpleType name="Status">
+        <s:restriction base="s:string">
+          <s:enumeration value="Open" />
+          <s:enumeration value="Closed" />
+        </s:restriction>
+      </s:simpleType>
+      <s:simpleType name="CurrencyType">
+        <s:restriction base="s:string">
+          <s:enumeration value="NoteRate" />
+          <s:enumeration value="ExchangeRate" />
+          <s:enumeration value="CustomsRate" />
+        </s:restriction>
+      </s:simpleType>
+      <s:complexType name="CurrencyRate">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="CurrencyCode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="SellingRate" type="s:decimal" />
+          <s:element minOccurs="0" maxOccurs="1" name="BuyingRate" type="s:decimal" />
+          <s:element minOccurs="0" maxOccurs="1" name="CustomsRate" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="TimeStamp" type="s:dateTime" />
+        </s:sequence>
+      </s:complexType>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="GetAccountStatementSoapIn">
+    <wsdl:part name="parameters" element="tns:GetAccountStatement" />
+  </wsdl:message>
+  <wsdl:message name="GetAccountStatementSoapOut">
+    <wsdl:part name="parameters" element="tns:GetAccountStatementResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetCurrencyRatesSoapIn">
+    <wsdl:part name="parameters" element="tns:CurrencyRateRequest" />
+  </wsdl:message>
+  <wsdl:message name="GetCurrencyRatesSoapOut">
+    <wsdl:part name="parameters" element="tns:CurrencyRateResponse" />
+  </wsdl:message>
+  <wsdl:portType name="IcelandicOnlineBankingStatementsSoap">
+    <wsdl:operation name="GetAccountStatement">
+      <wsdl:input message="tns:GetAccountStatementSoapIn" />
+      <wsdl:output message="tns:GetAccountStatementSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCurrencyRates">
+      <wsdl:input message="tns:GetCurrencyRatesSoapIn" />
+      <wsdl:output message="tns:GetCurrencyRatesSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="IcelandicOnlineBankingStatementsSoap" type="tns:IcelandicOnlineBankingStatementsSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetAccountStatement">
+      <soap:operation soapAction="http://IcelandicOnlineBanking/2005/12/01/GetAccountStatement" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCurrencyRates">
+      <soap:operation soapAction="http://IcelandicOnlineBanking/2005/12/01/GetCurrencyRates" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="IcelandicOnlineBankingStatementsSoap1" type="tns:IcelandicOnlineBankingStatementsSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetAccountStatement">
+      <soap12:operation soapAction="http://IcelandicOnlineBanking/2005/12/01/GetAccountStatement" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCurrencyRates">
+      <soap12:operation soapAction="http://IcelandicOnlineBanking/2005/12/01/GetCurrencyRates" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="IcelandicOnlineBankingStatementsService">
+    <wsdl:port name="IcelandicOnlineBankingStatementsSoap" binding="tns:IcelandicOnlineBankingStatementsSoap">
+      <soap:address location="https://www.kaupthing.is/Services/OnlineBanking/2005/12/01/IcelandicOnlineBankingStatementsService.asmx" />
+    </wsdl:port>
+    <wsdl:port name="IcelandicOnlineBankingStatementsSoap1" binding="tns:IcelandicOnlineBankingStatementsSoap1">
+      <soap12:address location="https://www.kaupthing.is/Services/OnlineBanking/2005/12/01/IcelandicOnlineBankingStatementsService.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

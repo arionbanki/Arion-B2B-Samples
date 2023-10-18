@@ -1,0 +1,369 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://schemas.b2b.is/2015/08/01/ForeignStatements" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="ForeignStatementService" targetNamespace="http://schemas.b2b.is/2015/08/01/ForeignStatements" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsp:Policy wsu:Id="CustomBinding_IForeignStatementService_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <sp:SymmetricBinding xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <wsp:Policy>
+            <sp:ProtectionToken>
+              <wsp:Policy>
+                <sp:X509Token sp:IncludeToken="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy/IncludeToken/Never">
+                  <wsp:Policy>
+                    <sp:RequireDerivedKeys />
+                    <sp:RequireThumbprintReference />
+                    <sp:WssX509V3Token10 />
+                  </wsp:Policy>
+                </sp:X509Token>
+              </wsp:Policy>
+            </sp:ProtectionToken>
+            <sp:AlgorithmSuite>
+              <wsp:Policy>
+                <sp:Basic256 />
+              </wsp:Policy>
+            </sp:AlgorithmSuite>
+            <sp:Layout>
+              <wsp:Policy>
+                <sp:Strict />
+              </wsp:Policy>
+            </sp:Layout>
+            <sp:IncludeTimestamp />
+            <sp:EncryptSignature />
+            <sp:OnlySignEntireHeadersAndBody />
+          </wsp:Policy>
+        </sp:SymmetricBinding>
+        <sp:EndorsingSupportingTokens xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <wsp:Policy>
+            <sp:X509Token sp:IncludeToken="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy/IncludeToken/AlwaysToRecipient">
+              <wsp:Policy>
+                <sp:RequireThumbprintReference />
+                <sp:WssX509V3Token10 />
+              </wsp:Policy>
+            </sp:X509Token>
+          </wsp:Policy>
+        </sp:EndorsingSupportingTokens>
+        <sp:Wss11 xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <wsp:Policy>
+            <sp:MustSupportRefThumbprint />
+            <sp:MustSupportRefEncryptedKey />
+            <sp:RequireSignatureConfirmation />
+          </wsp:Policy>
+        </sp:Wss11>
+        <sp:Trust10 xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <wsp:Policy>
+            <sp:MustSupportIssuedTokens />
+            <sp:RequireClientEntropy />
+            <sp:RequireServerEntropy />
+          </wsp:Policy>
+        </sp:Trust10>
+        <sp:TransportBinding xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <wsp:Policy>
+            <sp:TransportToken>
+              <wsp:Policy>
+                <sp:HttpsToken RequireClientCertificate="false" />
+              </wsp:Policy>
+            </sp:TransportToken>
+            <sp:AlgorithmSuite>
+              <wsp:Policy>
+                <sp:Basic256 />
+              </wsp:Policy>
+            </sp:AlgorithmSuite>
+            <sp:Layout>
+              <wsp:Policy>
+                <sp:Strict />
+              </wsp:Policy>
+            </sp:Layout>
+            <sp:IncludeTimestamp />
+          </wsp:Policy>
+        </sp:TransportBinding>
+        <wsaw:UsingAddressing />
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsp:Policy wsu:Id="CustomBinding_IForeignStatementService_GetForeignAccountTransactions_Input_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body />
+          <sp:Header Name="To" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="From" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="FaultTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="ReplyTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="MessageID" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="RelatesTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="Action" Namespace="http://www.w3.org/2005/08/addressing" />
+        </sp:SignedParts>
+        <sp:EncryptedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body />
+        </sp:EncryptedParts>
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsp:Policy wsu:Id="CustomBinding_IForeignStatementService_GetForeignAccountTransactions_output_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body />
+          <sp:Header Name="To" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="From" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="FaultTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="ReplyTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="MessageID" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="RelatesTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="Action" Namespace="http://www.w3.org/2005/08/addressing" />
+        </sp:SignedParts>
+        <sp:EncryptedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body />
+        </sp:EncryptedParts>
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsp:Policy wsu:Id="CustomBinding_IForeignStatementService_GetForeignAccountTransactions_BankErrorFaultFault_Fault">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body />
+          <sp:Header Name="To" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="From" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="FaultTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="ReplyTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="MessageID" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="RelatesTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="Action" Namespace="http://www.w3.org/2005/08/addressing" />
+        </sp:SignedParts>
+        <sp:EncryptedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body />
+        </sp:EncryptedParts>
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsp:Policy wsu:Id="CustomBinding_IForeignStatementService_GetForeignAccountStatements_Input_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body />
+          <sp:Header Name="To" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="From" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="FaultTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="ReplyTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="MessageID" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="RelatesTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="Action" Namespace="http://www.w3.org/2005/08/addressing" />
+        </sp:SignedParts>
+        <sp:EncryptedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body />
+        </sp:EncryptedParts>
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsp:Policy wsu:Id="CustomBinding_IForeignStatementService_GetForeignAccountStatements_output_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body />
+          <sp:Header Name="To" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="From" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="FaultTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="ReplyTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="MessageID" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="RelatesTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="Action" Namespace="http://www.w3.org/2005/08/addressing" />
+        </sp:SignedParts>
+        <sp:EncryptedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body />
+        </sp:EncryptedParts>
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsp:Policy wsu:Id="CustomBinding_IForeignStatementService_GetForeignAccountStatements_BankErrorFaultFault_Fault">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body />
+          <sp:Header Name="To" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="From" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="FaultTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="ReplyTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="MessageID" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="RelatesTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="Action" Namespace="http://www.w3.org/2005/08/addressing" />
+        </sp:SignedParts>
+        <sp:EncryptedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body />
+        </sp:EncryptedParts>
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsp:Policy wsu:Id="CustomBinding_IForeignStatementService_GetForeignAccounts_Input_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body />
+          <sp:Header Name="To" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="From" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="FaultTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="ReplyTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="MessageID" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="RelatesTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="Action" Namespace="http://www.w3.org/2005/08/addressing" />
+        </sp:SignedParts>
+        <sp:EncryptedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body />
+        </sp:EncryptedParts>
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsp:Policy wsu:Id="CustomBinding_IForeignStatementService_GetForeignAccounts_output_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body />
+          <sp:Header Name="To" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="From" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="FaultTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="ReplyTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="MessageID" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="RelatesTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="Action" Namespace="http://www.w3.org/2005/08/addressing" />
+        </sp:SignedParts>
+        <sp:EncryptedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body />
+        </sp:EncryptedParts>
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsp:Policy wsu:Id="CustomBinding_IForeignStatementService_GetForeignAccounts_BankErrorFaultFault_Fault">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body />
+          <sp:Header Name="To" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="From" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="FaultTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="ReplyTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="MessageID" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="RelatesTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="Action" Namespace="http://www.w3.org/2005/08/addressing" />
+        </sp:SignedParts>
+        <sp:EncryptedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body />
+        </sp:EncryptedParts>
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://schemas.b2b.is/2015/08/01/ForeignStatements/Imports">
+      <xsd:import schemaLocation="https://localhost/IsIT.OnlineBanking.External.ServiceHost.ForeignPayments/20150801/ForeignStatementService.svc?xsd=xsd0" namespace="http://schemas.b2b.is/2015/08/01/ForeignStatements" />
+      <xsd:import schemaLocation="https://localhost/IsIT.OnlineBanking.External.ServiceHost.ForeignPayments/20150801/ForeignStatementService.svc?xsd=xsd3" namespace="http://schemas.b2b.is/2015/08/01/Faults" />
+      <xsd:import schemaLocation="https://localhost/IsIT.OnlineBanking.External.ServiceHost.ForeignPayments/20150801/ForeignStatementService.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import schemaLocation="https://localhost/IsIT.OnlineBanking.External.ServiceHost.ForeignPayments/20150801/ForeignStatementService.svc?xsd=xsd2" namespace="http://schemas.b2b.is/2015/08/01/ForeignStatementTypes" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="IForeignStatementService_GetForeignAccountTransactions_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetForeignAccountTransactions" />
+  </wsdl:message>
+  <wsdl:message name="IForeignStatementService_GetForeignAccountTransactions_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetForeignAccountTransactionsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IForeignStatementService_GetForeignAccountTransactions_BankErrorFaultFault_FaultMessage">
+    <wsdl:part xmlns:q1="http://schemas.b2b.is/2015/08/01/Faults" name="detail" element="q1:BankErrorFault" />
+  </wsdl:message>
+  <wsdl:message name="IForeignStatementService_GetForeignAccountStatements_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetForeignAccountStatements" />
+  </wsdl:message>
+  <wsdl:message name="IForeignStatementService_GetForeignAccountStatements_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetForeignAccountStatementsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IForeignStatementService_GetForeignAccountStatements_BankErrorFaultFault_FaultMessage">
+    <wsdl:part xmlns:q2="http://schemas.b2b.is/2015/08/01/Faults" name="detail" element="q2:BankErrorFault" />
+  </wsdl:message>
+  <wsdl:message name="IForeignStatementService_GetForeignAccounts_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetForeignAccounts" />
+  </wsdl:message>
+  <wsdl:message name="IForeignStatementService_GetForeignAccounts_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetForeignAccountsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IForeignStatementService_GetForeignAccounts_BankErrorFaultFault_FaultMessage">
+    <wsdl:part xmlns:q3="http://schemas.b2b.is/2015/08/01/Faults" name="detail" element="q3:BankErrorFault" />
+  </wsdl:message>
+  <wsdl:portType name="IForeignStatementService">
+    <wsdl:operation name="GetForeignAccountTransactions">
+      <wsdl:input wsaw:Action="http://schemas.b2b.is/2015/08/01/ForeignStatements/IForeignStatementService/GetForeignAccountTransactions" message="tns:IForeignStatementService_GetForeignAccountTransactions_InputMessage" />
+      <wsdl:output wsaw:Action="http://schemas.b2b.is/2015/08/01/ForeignStatements/IForeignStatementService/GetForeignAccountTransactionsResponse" message="tns:IForeignStatementService_GetForeignAccountTransactions_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://schemas.b2b.is/2015/08/01/ForeignStatements/IForeignStatementService/GetForeignAccountTransactionsBankErrorFaultFault" name="BankErrorFaultFault" message="tns:IForeignStatementService_GetForeignAccountTransactions_BankErrorFaultFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetForeignAccountStatements">
+      <wsdl:input wsaw:Action="http://schemas.b2b.is/2015/08/01/ForeignStatements/IForeignStatementService/GetForeignAccountStatements" message="tns:IForeignStatementService_GetForeignAccountStatements_InputMessage" />
+      <wsdl:output wsaw:Action="http://schemas.b2b.is/2015/08/01/ForeignStatements/IForeignStatementService/GetForeignAccountStatementsResponse" message="tns:IForeignStatementService_GetForeignAccountStatements_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://schemas.b2b.is/2015/08/01/ForeignStatements/IForeignStatementService/GetForeignAccountStatementsBankErrorFaultFault" name="BankErrorFaultFault" message="tns:IForeignStatementService_GetForeignAccountStatements_BankErrorFaultFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetForeignAccounts">
+      <wsdl:input wsaw:Action="http://schemas.b2b.is/2015/08/01/ForeignStatements/IForeignStatementService/GetForeignAccounts" message="tns:IForeignStatementService_GetForeignAccounts_InputMessage" />
+      <wsdl:output wsaw:Action="http://schemas.b2b.is/2015/08/01/ForeignStatements/IForeignStatementService/GetForeignAccountsResponse" message="tns:IForeignStatementService_GetForeignAccounts_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://schemas.b2b.is/2015/08/01/ForeignStatements/IForeignStatementService/GetForeignAccountsBankErrorFaultFault" name="BankErrorFaultFault" message="tns:IForeignStatementService_GetForeignAccounts_BankErrorFaultFault_FaultMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="CustomBinding_IForeignStatementService" type="tns:IForeignStatementService">
+    <wsp:PolicyReference URI="#CustomBinding_IForeignStatementService_policy" />
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetForeignAccountTransactions">
+      <soap12:operation soapAction="http://schemas.b2b.is/2015/08/01/ForeignStatements/IForeignStatementService/GetForeignAccountTransactions" style="document" />
+      <wsdl:input>
+        <wsp:PolicyReference URI="#CustomBinding_IForeignStatementService_GetForeignAccountTransactions_Input_policy" />
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <wsp:PolicyReference URI="#CustomBinding_IForeignStatementService_GetForeignAccountTransactions_output_policy" />
+        <soap12:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="BankErrorFaultFault">
+        <wsp:PolicyReference URI="#CustomBinding_IForeignStatementService_GetForeignAccountTransactions_BankErrorFaultFault_Fault" />
+        <soap12:fault use="literal" name="BankErrorFaultFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="GetForeignAccountStatements">
+      <soap12:operation soapAction="http://schemas.b2b.is/2015/08/01/ForeignStatements/IForeignStatementService/GetForeignAccountStatements" style="document" />
+      <wsdl:input>
+        <wsp:PolicyReference URI="#CustomBinding_IForeignStatementService_GetForeignAccountStatements_Input_policy" />
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <wsp:PolicyReference URI="#CustomBinding_IForeignStatementService_GetForeignAccountStatements_output_policy" />
+        <soap12:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="BankErrorFaultFault">
+        <wsp:PolicyReference URI="#CustomBinding_IForeignStatementService_GetForeignAccountStatements_BankErrorFaultFault_Fault" />
+        <soap12:fault use="literal" name="BankErrorFaultFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="GetForeignAccounts">
+      <soap12:operation soapAction="http://schemas.b2b.is/2015/08/01/ForeignStatements/IForeignStatementService/GetForeignAccounts" style="document" />
+      <wsdl:input>
+        <wsp:PolicyReference URI="#CustomBinding_IForeignStatementService_GetForeignAccounts_Input_policy" />
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <wsp:PolicyReference URI="#CustomBinding_IForeignStatementService_GetForeignAccounts_output_policy" />
+        <soap12:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="BankErrorFaultFault">
+        <wsp:PolicyReference URI="#CustomBinding_IForeignStatementService_GetForeignAccounts_BankErrorFaultFault_Fault" />
+        <soap12:fault use="literal" name="BankErrorFaultFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="ForeignStatementService">
+    <wsdl:port name="CustomBinding_IForeignStatementService" binding="tns:CustomBinding_IForeignStatementService">
+      <soap12:address location="https://localhost/IsIT.OnlineBanking.External.ServiceHost.ForeignPayments/20150801/ForeignStatementService.svc" />
+      <wsa10:EndpointReference>
+        <wsa10:Address>https://localhost/IsIT.OnlineBanking.External.ServiceHost.ForeignPayments/20150801/ForeignStatementService.svc</wsa10:Address>
+        <Identity xmlns="http://schemas.xmlsoap.org/ws/2006/02/addressingidentity">
+          <KeyInfo xmlns="http://www.w3.org/2000/09/xmldsig#">
+            <X509Data>
+              <X509Certificate>MIIFDjCCA/agAwIBAgIQB24rJEqoL/a+dJo5taQ5ozANBgkqhkiG9w0BAQsFADByMQswCQYDVQQGEwJVUzEVMBMGA1UEChMMRGlnaUNlcnQgSW5jMRkwFwYDVQQLExB3d3cuZGlnaWNlcnQuY29tMTEwLwYDVQQDEyhEaWdpQ2VydCBTSEEyIEFzc3VyZWQgSUQgQ29kZSBTaWduaW5nIENBMB4XDTE1MDMxOTAwMDAwMFoXDTE2MDQwNDEyMDAwMFowVTELMAkGA1UEBhMCSVMxEjAQBgNVBAcTCVJleWtqYXZpazEYMBYGA1UEChMPQXJpb24gYmFua2kgaGYuMRgwFgYDVQQDEw9BcmlvbiBiYW5raSBoZi4wggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEKAoIBAQCLJOCXfVuLWhJgdQ2M+SfNm/WyvW6eF1+LtOPDdNidiy9OIxicRTpJxhjbo7Tl5LVeO5iVhbumqiXgVWknh2Tg3q3px/QI1d9KuR7Prv0dxAV+ZV5ltGvE78Zkk2d8MeUiOyyua+Jefw4RnZPuhV4U3htG3JolFhfO/k2wkQ3yjLhbsJmQIX/SNB2crHtdWUOEpv+mR8QFdKVLFOnlSLy4NdHmpS83Y/ted4YfZVY9Xdy6oEblXHmOIsRvWLUjnPHjD33tj24ev8EwDPvh0q6Mrqaf1L+6GHO1x+yVeEQK7A69w4ULgAC5/i+qdRzxxDmtRHCIw1hcjpcTPSLV9ZN/AgMBAAGjggG7MIIBtzAfBgNVHSMEGDAWgBRaxLl7KgqjpepxA8Bg+S32ZXUOWDAdBgNVHQ4EFgQU8EENimx+oz7rtVU9K4OwvRGFp9swDgYDVR0PAQH/BAQDAgeAMBMGA1UdJQQMMAoGCCsGAQUFBwMDMHcGA1UdHwRwMG4wNaAzoDGGL2h0dHA6Ly9jcmwzLmRpZ2ljZXJ0LmNvbS9zaGEyLWFzc3VyZWQtY3MtZzEuY3JsMDWgM6Axhi9odHRwOi8vY3JsNC5kaWdpY2VydC5jb20vc2hhMi1hc3N1cmVkLWNzLWcxLmNybDBCBgNVHSAEOzA5MDcGCWCGSAGG/WwDATAqMCgGCCsGAQUFBwIBFhxodHRwczovL3d3dy5kaWdpY2VydC5jb20vQ1BTMIGEBggrBgEFBQcBAQR4MHYwJAYIKwYBBQUHMAGGGGh0dHA6Ly9vY3NwLmRpZ2ljZXJ0LmNvbTBOBggrBgEFBQcwAoZCaHR0cDovL2NhY2VydHMuZGlnaWNlcnQuY29tL0RpZ2lDZXJ0U0hBMkFzc3VyZWRJRENvZGVTaWduaW5nQ0EuY3J0MAwGA1UdEwEB/wQCMAAwDQYJKoZIhvcNAQELBQADggEBAHld5Nw8XJu0VBefoxJVDl+XhagAQ8QnuTSVBw7UE3LFTDZ07UdyFdW0P9elFHlmiVYJ09TvEPncs4MSIgtRwfLrMKoukdXjydxEGF58v2PE+NCyiGbN1wuue4SAVGH7ltJ6vlRIbJOv8Q8fRt+qH0oGDYccCLQ9pf923QepSe4YL72yf72XnwOh1DQaDANbd4qRlD+cUHJ2UZkGh9vdif9OcT/joc7eQdq2UeoY0jURkJCLyc3ZEIGafVZn3H7gyjO62BhvSP2+0SK/91GCY9jg8sYndOLmydM7OZZK2sdL8iRNYNaxkb7evc/2LbIbZKWZozlE0hVdGft/Yk1HYvI=</X509Certificate>
+            </X509Data>
+          </KeyInfo>
+        </Identity>
+      </wsa10:EndpointReference>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

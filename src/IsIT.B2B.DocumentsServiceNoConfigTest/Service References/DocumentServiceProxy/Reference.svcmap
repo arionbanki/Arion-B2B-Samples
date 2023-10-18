@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="b34c8cdb-6ce5-4c30-b0c3-1d90e4e41ebe" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings>
+      <CollectionMapping TypeName="System.Collections.ObjectModel.Collection`1" Category="List" />
+    </CollectionMappings>
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>false</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="https://ws.b2b.is/Documents/20130101/DocumentService.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="DocumentService.wsdl" MetadataType="Wsdl" ID="86b45c7c-c92d-4815-9c1d-7296d6722c08" SourceId="1" SourceUrl="https://ws.b2b.is/Documents/20130101/DocumentService.svc?wsdl" />
+    <MetadataFile FileName="DocumentService.xsd" MetadataType="Schema" ID="99b30c86-2174-4258-8974-d996141483bf" SourceId="1" SourceUrl="https://ws.b2b.is/Documents/20130101/DocumentService.svc?xsd=xsd0" />
+    <MetadataFile FileName="DocumentService1.xsd" MetadataType="Schema" ID="9b040bd9-e27b-4682-987d-af4d2af0d4d4" SourceId="1" SourceUrl="https://ws.b2b.is/Documents/20130101/DocumentService.svc?xsd=xsd2" />
+    <MetadataFile FileName="DocumentService.disco" MetadataType="Disco" ID="53326cff-662c-488a-92ec-98f87969ef3a" SourceId="1" SourceUrl="https://ws.b2b.is/Documents/20130101/DocumentService.svc?disco" />
+    <MetadataFile FileName="DocumentService2.xsd" MetadataType="Schema" ID="de719d2a-7c7b-4090-80d3-3e5ae7c50386" SourceId="1" SourceUrl="https://ws.b2b.is/Documents/20130101/DocumentService.svc?xsd=xsd1" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

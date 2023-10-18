@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="9f3d84d2-2c50-44d1-831a-0c2863f48bed" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings>
+      <CollectionMapping TypeName="System.Collections.ObjectModel.Collection`1" Category="List" />
+    </CollectionMappings>
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>false</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="https://localhost/IsIT.OnlineBanking.External.ServiceHost.ForeignPayments/20150801/ForeignStatementService.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="ForeignStatementService3.xsd" MetadataType="Schema" ID="66cd5acd-67aa-4b9b-a388-71052d550940" SourceId="1" SourceUrl="https://localhost/IsIT.OnlineBanking.External.ServiceHost.ForeignPayments/20150801/ForeignStatementService.svc?xsd=xsd2" />
+    <MetadataFile FileName="ForeignStatementService31.xsd" MetadataType="Schema" ID="62722b4b-d125-4353-94b9-44ce2dfe7f91" SourceId="1" SourceUrl="https://localhost/IsIT.OnlineBanking.External.ServiceHost.ForeignPayments/20150801/ForeignStatementService.svc?xsd=xsd1" />
+    <MetadataFile FileName="ForeignStatementService1.disco" MetadataType="Disco" ID="bf352ab0-3dfe-46a4-8fa3-37ee7c8bf31b" SourceId="1" SourceUrl="https://localhost/IsIT.OnlineBanking.External.ServiceHost.ForeignPayments/20150801/ForeignStatementService.svc?disco" />
+    <MetadataFile FileName="ForeignStatementService.xsd" MetadataType="Schema" ID="37b0ae2d-9b22-4cb2-a05c-27139b30024f" SourceId="1" SourceUrl="https://localhost/IsIT.OnlineBanking.External.ServiceHost.ForeignPayments/20150801/ForeignStatementService.svc?xsd=xsd3" />
+    <MetadataFile FileName="ForeignStatementService21.wsdl" MetadataType="Wsdl" ID="4160022c-13a4-4336-b55f-fdf88ec41176" SourceId="1" SourceUrl="https://localhost/IsIT.OnlineBanking.External.ServiceHost.ForeignPayments/20150801/ForeignStatementService.svc?wsdl" />
+    <MetadataFile FileName="ForeignStatementService32.xsd" MetadataType="Schema" ID="0185f4c7-ab1d-4993-9877-935acf8d08ac" SourceId="1" SourceUrl="https://localhost/IsIT.OnlineBanking.External.ServiceHost.ForeignPayments/20150801/ForeignStatementService.svc?xsd=xsd0" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

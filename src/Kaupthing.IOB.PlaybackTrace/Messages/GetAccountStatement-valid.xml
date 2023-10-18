@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:wsse="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd">
+	<soap:Header>
+	  <wsa:Action>http://IcelandicOnlineBanking/2005/12/01/GetAccountStatement</wsa:Action>
+	  <wsa:MessageID>urn:uuid:8960216e-c40d-4a68-949a-150b0805f188</wsa:MessageID>
+	  <wsa:ReplyTo>
+		<wsa:Address>http://schemas.xmlsoap.org/ws/2004/08/addressing/role/anonymous</wsa:Address>
+	  </wsa:ReplyTo>
+	  <wsa:To>https://www.kaupthing.is/services/onlinebanking/2005/12/01/IcelandicOnlineBankingStatementsService.asmx</wsa:To>
+	  <wsse:Security soap:mustUnderstand="1">
+		<wsu:Timestamp wsu:Id="Timestamp-12863927-a48c-4177-bc71-88babe2d72a9">
+		  <wsu:Created>2009-03-19T13:58:11Z</wsu:Created>
+		  <wsu:Expires>2009-03-19T14:03:11Z</wsu:Expires>
+		</wsu:Timestamp>
+		<wsse:UsernameToken xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" wsu:Id="SecurityToken-49679f79-f12d-4300-91b6-d9ac08a60e5f">
+		  <wsse:Username>xxx</wsse:Username>
+		  <wsse:Password Type="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-username-token-profile-1.0#PasswordText">xxx</wsse:Password>
+		  <wsse:Nonce>c6Vq/uB9gMbbABV8P2CGnw==</wsse:Nonce>
+		  <wsu:Created>2009-03-19T13:58:11Z</wsu:Created>
+		</wsse:UsernameToken>
+		<wsse:BinarySecurityToken ValueType="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-x509-token-profile-1.0#X509v3" EncodingType="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-soap-message-security-1.0#Base64Binary" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" wsu:Id="SecurityToken-f4130132-4399-4b78-9011-a87c0306b2aa">MIIFWTCCBEGgAwIBAgICAzIwDQYJKoZIhvcNAQEFBQAwgYAxCzAJBgNVBAYTAklTMRMwEQYDVQQFEwo1MjEwMDAyNzkwMRUwEwYDVQQKEwxBdWRrZW5uaSBoZi4xJTAjBgNVBAsTHFV0Z2VmYW5kaSBhdWRrZW5uaXNza2lscmlramExHjAcBgNVBAMTFVRyYXVzdCBBdWRrZW5uaS1waWxvdDAeFw0wODA1MDYxNDIwMjhaFw0wOTA1MDYxMTU2NDhaMHoxCzAJBgNVBAYTAklTMRcwFQYDVQQLDA5FaW5rYXNraWxyw61raTEUMBIGA1UECwwLQXXDsGtlbm5pbmcxEDAOBgNVBAsMB1Byw7NmdW4xEzARBgNVBAUTCjI4MDI3NzIzMTkxFTATBgNVBAMMDFByYXRpayBLdW1hcjCCASIwDQYJKoZIhvcNAQEBBQADggEPADCCAQoCggEBAOuQT9+tBklHjGwMBg7x0QzHB9h2HewnhizgfrFDw43a5gGKpEyNYIvLMJ8k8tc2P4h/TMtDkGlCgikOacvoyV90UVSL/oiprRpo0lsxizVsWdMzvIxoe3WqHJnTCcs23w1hI2oL17xuInFTdAuKiI1sSwY9yKkOAOOY9BFUudB2IRRRyj8+id60VUPOTcQpq8QXwBhdTuOp/9uxNwHW2CYr/Iay8TTNKk1UixFtialkAPGq0fV0BFFtH44nAwN96WizmTHogmS+Ya1D/p/ILuO+cLTm1mtMXtgllQDdLf8ozoK8VnJSYndO1nuBtRxF7UVkH9tjlEAY6uHCo1JUWq8CAwEAAaOCAeAwggHcMAwGA1UdEwEB/wQCMAAwgaEGA1UdIASBmTCBljCBkwYIYIJgAgGHZwUwgYYwRwYIKwYBBQUHAgIwOww5VGhpcyBjZXJ0aWZpY2F0ZSBpcyBwcmltYXJpbHkgaW50ZW5kZWQgZm9yIGF1dGhlbnRpY2F0aW9uMDsGCCsGAQUFBwIBFi9odHRwOi8vY3BzLmF1ZGtlbm5pLmlzL3RyYXVzdGF1ZGtlbm5pcHJvZnVuL2NwczB7BggrBgEFBQcBAQRvMG0wKAYIKwYBBQUHMAGGHGh0dHA6Ly9vY3NwcGlsb3QuYXVka2VubmkuaXMwQQYHYIJgAgFjBoY2aHR0cDovL2NkcC5pc2xhbmRzcm90LmlzL3RyYXVzdGF1ZGtlbm5pcGlsb3QvY2EvY2EuY3J0MA4GA1UdDwEB/wQEAwIFoDATBgNVHSUEDDAKBggrBgEFBQcDAjAfBgNVHSMEGDAWgBTQkYYqTT8ii46fkcHF0z8XjIGFZTBGBgNVHR8EPzA9MDugOaA3hjVodHRwOi8vY3JsLmF1ZGtlbm5pLmlzL3RyYXVzdGF1ZGtlbm5pcGlsb3QvbGF0ZXN0LmNybDAdBgNVHQ4EFgQUH/yYzeQNgfJHLFFEPoNjEA8F+p8wDQYJKoZIhvcNAQEFBQADggEBAAdFMNR87mgmtaYE/HehRH4lv99aMk6vwaKUNu/9FJKbICnFhQO8c3aiDjJCNrhHhgfVel0mKun96YR8EKc0M/x0MBTIVg4o1BCTfdbFi6JQu0ZuEVIlbPqxeE2JTl8UjcflWn93x9sn7qf7HiShCvKCziB1CLv2ofueN2cxOv+F3EEfEig/oFPk8IXuTomNQzjVRy+c6ror6AtzE1JPdGl1jwHy/xS2p/ZPulyX70dJgXYb7wsltD81N8dStivP3caFgFjYaeZ78+jvN/kz0dTsdlnB1L3/LvsYtUhvPWHvOK5WrwnokOdfI7Vh/syceyAoORoJF1zMmwi/UqJ22/8=</wsse:BinarySecurityToken>
+		<Signature xmlns="http://www.w3.org/2000/09/xmldsig#">
+		  <SignedInfo>
+			<ds:CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" xmlns:ds="http://www.w3.org/2000/09/xmldsig#" />
+			<SignatureMethod Algorithm="http://www.w3.org/2000/09/xmldsig#rsa-sha1" />
+			<Reference URI="#Id-2f1d3717-a3c7-4aa8-b75d-9143386b2626">
+			  <Transforms>
+				<Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" />
+			  </Transforms>
+			  <DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
+			  <DigestValue>ktJutEBh8aSXBAswtn8alrnJiAA=</DigestValue>
+			</Reference>
+		  </SignedInfo>
+		  <SignatureValue>BwxlLmpJ6GemjEGZSChP+sM14110ayXItugEz5vscldBpuxusPM3uO4G6jczeY9LTk/tf3HI2l6FTS+eRC6IRkqcMvjA18VicrAf9EeMtteFshuuK/NDSa4sVPnOArT2eMAaiy4wofU0nICYcqxxCmrPTkrFXc2LQoOYpfRWA5jCIFvZWH77GWvr4Q344qNDT53W02zqYyfDSxlzsomdp8M8EuLLyz78A5f7KuX17aK5Dk2JYHFQkN3iKhS+EHlTNK9NCNV6MPFsHRirEFPd4TPyUbKJziuEhNDlTxA7bAXsoXTVUj4oFOB6rqBwGNpqMKHUNFnX7Y3aXKPyZsEGPw==</SignatureValue>
+		  <KeyInfo>
+			<wsse:SecurityTokenReference>
+			  <wsse:Reference URI="#SecurityToken-f4130132-4399-4b78-9011-a87c0306b2aa" ValueType="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-x509-token-profile-1.0#X509v3" />
+			</wsse:SecurityTokenReference>
+		  </KeyInfo>
+		</Signature>
+	  </wsse:Security>
+	</soap:Header>
+	<soap:Body wsu:Id="Id-2f1d3717-a3c7-4aa8-b75d-9143386b2626">
+	  <GetAccountStatement xmlns="http://IcelandicOnlineBanking/2005/12/01/Statements">
+		<accountStatement>
+		  <Account xmlns="http://IcelandicOnlineBanking/2005/12/01/StatementTypes">999999999999</Account>
+		  <DateFrom xmlns="http://IcelandicOnlineBanking/2005/12/01/StatementTypes">2009-03-01</DateFrom>
+		  <DateTo xmlns="http://IcelandicOnlineBanking/2005/12/01/StatementTypes">2009-03-19</DateTo>
+		</accountStatement>
+	  </GetAccountStatement>
+	</soap:Body>
+</soap:Envelope>
