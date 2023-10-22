@@ -1,32 +1,21 @@
-﻿using System.IO;
-using System.Net;
-using System.Net.Security;
-using System.Security.Cryptography.X509Certificates;
-using System.ServiceModel;
-using System.ServiceModel.Channels;
-using System.Threading;
-using System.Windows.Threading;
-using System.Xml;
-using System.Xml.Xsl;
-using IsIT.B2B.ClaimService20131015Test.ClaimServiceProxy;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+﻿using IsIT.B2B.ClaimService20131015Test.ClaimServiceProxy;
 using IsIT.B2B.Common;
 using IsIT.B2B.Common.Security;
 using IsIT.B2B.Common.Trace;
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
 using System.Globalization;
+using System.IO;
+using System.Linq;
+using System.ServiceModel;
+using System.Text;
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Input;
+using System.Windows.Threading;
+using System.Xml;
+using System.Xml.Xsl;
 
 namespace IsIT.B2B.ClaimService20131015Test
 {
@@ -37,7 +26,15 @@ namespace IsIT.B2B.ClaimService20131015Test
     {
         public const string Security_Namespace = "http://IcelandicOnlineBanking/Security/";
 
-        private static MessageViewerInspector inspector = new MessageViewerInspector(); 
+        private static MessageViewerInspector inspector = new MessageViewerInspector();
+
+        private BindingList<object> _certs;
+        public BindingList<object> Certs
+        {
+            get { return _certs; }
+            set { _certs = value; }
+        }
+
 
         public MainWindow()
         {
@@ -49,28 +46,28 @@ namespace IsIT.B2B.ClaimService20131015Test
 
         private void btnQueryClaims_Click(object sender, RoutedEventArgs e)
         {
-            queryClaimsDataGrid1.DataContext = null;                        
+            queryClaimsDataGrid1.DataContext = null;
             Mouse.OverrideCursor = Cursors.Wait;
-            btnQueryClaims.IsEnabled = false;            
+            btnQueryClaims.IsEnabled = false;
             try
             {
                 Dispatcher.Invoke(
                     DispatcherPriority.Background,
-                    (Action)delegate()
-                    {                                                
+                    (Action)delegate ()
+                    {
                         queryClaimsDataGrid1.DataContext = this.QueryClaims();
                     }
-                );                
+                );
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Unable to search for claims due to: " + ex.Message);
             }
             finally
-            {                
+            {
                 btnQueryClaims.IsEnabled = true;
                 Mouse.OverrideCursor = null;
-            }            
+            }
         }
 
         #endregion
@@ -92,18 +89,18 @@ namespace IsIT.B2B.ClaimService20131015Test
 
         private ClaimInfo[] QueryClaims()
         {
-            
+
             this.ClearTrace();
             Mouse.OverrideCursor = Cursors.Wait;
             var result = default(ClaimInfo[]);
             try
             {
                 // Call QueryClaims for Multiple Claims
-                
+
                 using (var client = new ServiceProxy<IIcelandicOnlineBankingClaimServiceChannel>())
                 {
                     try
-                    {                        
+                    {
                         var certificate = (OnlineBankingCertificate)ComboBoxCertificate.SelectedItem;
 
                         // Add X509 Security token
@@ -125,10 +122,10 @@ namespace IsIT.B2B.ClaimService20131015Test
                             var pwdHeader = new MessageHeader<string>(PasswordTextBox.Password);
                             var pwdUntyped = pwdHeader.GetUntypedHeader("Password", Security_Namespace);
                             OperationContext.Current.OutgoingMessageHeaders.Add(pwdUntyped);
-                                                        
+
                             //Setup Multi Query
                             var query = SetupMultiQuery();
-                                
+
                             // Query Multiple Claims                                
                             QueryClaimsResult results = client.Proxy.QueryClaims(query);
 
@@ -184,7 +181,7 @@ namespace IsIT.B2B.ClaimService20131015Test
                             OperationContext.Current.OutgoingMessageHeaders.Add(pwdUntyped);
 
                             // Query OperationResult
-                            result = client.Proxy.GetClaimOperationResult(id);                            
+                            result = client.Proxy.GetClaimOperationResult(id);
                         }
                     }
                     catch (FaultException<IOBSFault> ex)
@@ -204,7 +201,7 @@ namespace IsIT.B2B.ClaimService20131015Test
         {
 
             this.ClearTrace();
-            Mouse.OverrideCursor = Cursors.Wait;            
+            Mouse.OverrideCursor = Cursors.Wait;
             var result = default(ClaimTransaction[]);
             try
             {
@@ -245,7 +242,7 @@ namespace IsIT.B2B.ClaimService20131015Test
                             if (transactionResult.Transactions != null)
                             {
                                 result = transactionResult.Transactions;
-                            }                            
+                            }
                         }
                     }
                     catch (FaultException<IOBSFault> ex)
@@ -443,8 +440,8 @@ namespace IsIT.B2B.ClaimService20131015Test
             }
             if (inspector.ResponseMessage != null)
             {
-                webBrowserResponseText.NavigateToString(XmlToHtml(inspector.ResponseMessage));                                    
-            }            
+                webBrowserResponseText.NavigateToString(XmlToHtml(inspector.ResponseMessage));
+            }
         }
 
 
@@ -605,18 +602,16 @@ namespace IsIT.B2B.ClaimService20131015Test
 
         private void Grid_Loaded(object sender, RoutedEventArgs e)
         {
-            // Setup Controls
-
-            ComboBoxCertificate.DataContext = OnlineBankingCertificate.GetCertificates();
-
+            var certificateList = OnlineBankingCertificate.GetCertificates(false);
+            _certs = new BindingList<object>();
+            foreach (var certificate in certificateList)
+            {
+                _certs.Add(certificate);
+            }
+            _certs.Insert(0, new EmptyCertificateItem());  // Ensure "None" item is always first
             ComboBoxCertificate.DisplayMemberPath = "DisplayName";
             ComboBoxCertificate.SelectedValuePath = "Subject";
-
-            ComboBoxCertificate.Items.Clear();
-            foreach (var certificate in OnlineBankingCertificate.GetCertificates())
-            {
-                ComboBoxCertificate.Items.Add(certificate);
-            }                   
+            DataContext = this;  // set datacontext
         }
 
         private void TabControl_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -633,13 +628,13 @@ namespace IsIT.B2B.ClaimService20131015Test
             {
                 Dispatcher.Invoke(
                     DispatcherPriority.Background,
-                    (Action)delegate()
+                    (Action)delegate ()
                     {
                         var numberOfClaims = Int32.Parse(txtNumberOfClaims.Text);
                         var testClaims = this.CreateTestClaims(numberOfClaims, txtClaimant.Text, txtPayor.Text, txtBank.Text, txtIdentifier.Text);
                         result = this.CreateClaims(testClaims);
                         tabClaimOperationResult.Focus();
-                        txtId.Text = result;                        
+                        txtId.Text = result;
                         btnSearch.RaiseEvent(new RoutedEventArgs(Button.ClickEvent));
                     }
                 );
@@ -652,7 +647,7 @@ namespace IsIT.B2B.ClaimService20131015Test
             {
                 btnCreateClaims.IsEnabled = true;
                 Mouse.OverrideCursor = null;
-            }              
+            }
         }
 
         private void queryClaimsDataGrid1_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -668,7 +663,7 @@ namespace IsIT.B2B.ClaimService20131015Test
         }
 
         private void btnAlterSelected_Click(object sender, RoutedEventArgs e)
-        {            
+        {
             if (this.queryClaimsDataGrid1.SelectedItems != null)
             {
                 alterClaimsDataGrid1.DataContext = this.queryClaimsDataGrid1.SelectedItems;
@@ -688,13 +683,13 @@ namespace IsIT.B2B.ClaimService20131015Test
             {
                 Dispatcher.Invoke(
                     DispatcherPriority.Background,
-                    (Action)delegate()
+                    (Action)delegate ()
                     {
                         result = this.GetClaimOperationResult(txtId.Text);
                         successGrid.DataContext = result.Success;
                         errorsGrid.DataContext = result.Errors;
                         txtBatchResultId.Text = result.ID;
-                        txtBatchResultStatus.Text = result.Status.ToString();                        
+                        txtBatchResultStatus.Text = result.Status.ToString();
                     }
                 );
             }
@@ -706,20 +701,20 @@ namespace IsIT.B2B.ClaimService20131015Test
             {
                 btnSearch.IsEnabled = true;
                 Mouse.OverrideCursor = null;
-            }   
+            }
         }
 
 
         private void btnQueryClaimTransactions_Click(object sender, RoutedEventArgs e)
         {
-            queryClaimsTransactionsDataGrid1.DataContext = null;            
+            queryClaimsTransactionsDataGrid1.DataContext = null;
             Mouse.OverrideCursor = Cursors.Wait;
             btnQueryClaimTransactions.IsEnabled = false;
             try
             {
                 Dispatcher.Invoke(
                     DispatcherPriority.Background,
-                    (Action)delegate()
+                    (Action)delegate ()
                     {
                         queryClaimsTransactionsDataGrid1.DataContext = this.QueryClaimTransactions(txtTransactionClaimant.Text, txtTransactionAccount.Text, txtTransactionDueDate.Text);
                     }
@@ -733,7 +728,7 @@ namespace IsIT.B2B.ClaimService20131015Test
             {
                 btnQueryClaimTransactions.IsEnabled = true;
                 Mouse.OverrideCursor = null;
-            }    
+            }
         }
 
         private void btnCancelClaims_Click(object sender, RoutedEventArgs e)
@@ -786,16 +781,16 @@ namespace IsIT.B2B.ClaimService20131015Test
                 var claims = new List<Claim>();
                 foreach (var selectedClaim in this.alterClaimsDataGrid1.SelectedItems.Cast<Claim>())
                 {
-                    selectedClaim.Amount = decimal.Parse(txtAlterAmount.Text);                    
+                    selectedClaim.Amount = decimal.Parse(txtAlterAmount.Text);
                     selectedClaim.Printing = new Printing();
                     selectedClaim.Printing.ItemRows = new ItemRow[1];
                     selectedClaim.Printing.ItemRows[0] = new ItemRow
-                                                         {
-                                                             Amount = selectedClaim.Amount,
-                                                             Text = "Innborgun"
-                                                         };
+                    {
+                        Amount = selectedClaim.Amount,
+                        Text = "Innborgun"
+                    };
                     claims.Add(selectedClaim);
-                }                                
+                }
                 Mouse.OverrideCursor = Cursors.Wait;
                 btnAlterClaims.IsEnabled = false;
                 try
@@ -818,7 +813,5 @@ namespace IsIT.B2B.ClaimService20131015Test
                 }
             }
         }
-
-
     }
 }

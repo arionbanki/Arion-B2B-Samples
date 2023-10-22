@@ -37,7 +37,7 @@ namespace IsIT.B2B.Common.Security
         public static ServiceProxy<T> SetWcfCertificateCredentials(ServiceProxy<T> proxy, string url, OnlineBankingCertificate certificate, bool useDefaultProxy = false)
         {
 
-          //  proxy.ClientCredentials.ServiceCertificate.Authentication.CertificateValidationMode = X509CertificateValidationMode.None;           
+            proxy.ClientCredentials.ServiceCertificate.Authentication.CertificateValidationMode = X509CertificateValidationMode.None;           
 
             // Set Client Certificate
             proxy.ClientCredentials.ClientCertificate.Certificate = certificate;

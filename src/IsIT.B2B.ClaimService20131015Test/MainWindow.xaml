@@ -1,8 +1,20 @@
 ﻿<Window x:Class="IsIT.B2B.ClaimService20131015Test.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:local="clr-namespace:IsIT.B2B.ClaimService20131015Test"
         Title="Claims Schema 20131015 Sample Client" Height="715.95" Width="1031" AllowDrop="True"
         Background="{DynamicResource {x:Static SystemColors.ControlBrushKey}}">
+    <Window.Resources>
+        <DataTemplate x:Key="CertificateTemplate">
+            <TextBlock Text="{Binding DisplayName}" />
+        </DataTemplate>
+        <DataTemplate x:Key="EmptyCertificateTemplate">
+            <TextBlock Text="None" />
+        </DataTemplate>
+        <local:CertificateTemplateSelector x:Key="CertificateTemplateSelector"
+        CertificateTemplate="{StaticResource CertificateTemplate}"
+        EmptyCertificateTemplate="{StaticResource EmptyCertificateTemplate}" />
+    </Window.Resources>
     <Grid Loaded="Grid_Loaded" Margin="0,0,0,-116">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="335*"/>
@@ -21,7 +33,7 @@
         </ComboBox>
         <PasswordBox Height="23" HorizontalAlignment="Left" Margin="218,76,0,0" x:Name="PasswordTextBox" VerticalAlignment="Top" Width="120" TabIndex="3" Grid.Column="2" />
         <Label Content="Certificate" HorizontalAlignment="Left" Margin="132,46,0,0" VerticalAlignment="Top"/>
-        <ComboBox x:Name="ComboBoxCertificate" HorizontalAlignment="Left" Margin="132,77,0,0" VerticalAlignment="Top" Width="222" Grid.ColumnSpan="2"/>
+        <ComboBox x:Name="ComboBoxCertificate" ItemsSource="{Binding Path=Certs}" HorizontalAlignment="Left" Margin="132,77,0,0" VerticalAlignment="Top" Width="222" Grid.ColumnSpan="2"/>
         <TabControl HorizontalAlignment="Left" Height="256" Margin="16,128,0,0" VerticalAlignment="Top" Width="991" SelectionChanged="TabControl_SelectionChanged" Background="{DynamicResource {x:Static SystemColors.ControlBrushKey}}" Grid.ColumnSpan="3">
             <TabItem Header="Query Claims" Height="24" VerticalAlignment="Bottom">
                 <Grid Background="#FFE5E5E5" Height="296" Margin="0,0,0,-72">
