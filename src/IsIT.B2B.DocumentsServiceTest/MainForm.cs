@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.IO;
 using System.ServiceModel;
 using System.ServiceModel.Channels;
@@ -60,11 +61,11 @@ namespace IsIT.B2B.DocumentsServiceTest
                         var response = client.Proxy.UploadDocument(request);
                         if (response == null || response.Body == null)
                         {
-                            resultPictureBox.Image = imageList1.Images[1]; // Error
+                            resultPictureBox.Image = Image.FromFile("Img\\ImageError.png");                            
                         }
                         else
                         {
-                            resultPictureBox.Image = imageList1.Images[0]; // Success
+                            resultPictureBox.Image = Image.FromFile("Img\\ImageSuccess.png");
                             lblUploadDocumentResult.Text = response.Body.DocumentID;
                         }
                     }
@@ -174,12 +175,12 @@ namespace IsIT.B2B.DocumentsServiceTest
                         var response = client.Proxy.GetDocumentResult(request);
                         if (response == null || response.Body == null || response.Body.DocumentResult == null)
                         {
-                            resultPictureBox.Image = imageList1.Images[1]; // Error
+                            resultPictureBox.Image = Image.FromFile("Img\\ImageError.png");
                             ShowDocumentResult();
                         }
                         else
                         {
-                            resultPictureBox.Image = imageList1.Images[0]; // Success
+                            resultPictureBox.Image = Image.FromFile("Img\\ImageSuccess.png");
                             ShowDocumentResult(response.Body.DocumentResult);
                         }
                     }

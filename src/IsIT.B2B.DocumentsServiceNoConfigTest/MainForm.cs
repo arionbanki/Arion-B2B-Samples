@@ -31,6 +31,7 @@ namespace IsIT.B2B.DocumentsServiceNoConfigTest
 
         private void btnGetDocumentResult_Click(object sender, EventArgs e)
         {
+
             ClearGetDocumentResult();
             Application.UseWaitCursor = true;
             btnGetDocumentResult.Enabled = false;
@@ -94,12 +95,12 @@ namespace IsIT.B2B.DocumentsServiceNoConfigTest
                         var response = channel.GetDocumentResult(request);
                         if (response == null || response.Body == null || response.Body.DocumentResult == null)
                         {
-                            resultPictureBox.Image = imageList1.Images[1]; // Error
+                            resultPictureBox.Image = Image.FromFile("Img\\ImageError.png");
                             ShowDocumentResult();
                         }
                         else
                         {
-                            resultPictureBox.Image = imageList1.Images[0]; // Success
+                            resultPictureBox.Image = Image.FromFile("Img\\ImageSuccess.png");
                             ShowDocumentResult(response.Body.DocumentResult);
                         }
                     }
